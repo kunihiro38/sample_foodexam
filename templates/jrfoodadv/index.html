@@ -1,0 +1,64 @@
+{% extends 'jrfoodadv/base/jrfoodadv_base.html' %}
+{% block page_title %}食品表示検定・初級学習トップページ{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+{% include 'jrfoodadv/_include/_content_wrapper.html'%}
+
+
+<section>
+    <div class="navi">
+        <span class="bold"><a href="{% url 'jrfoodadv:index' %}" class="background">練習モード</a></span>
+        <span><a href="{% url 'jrfoodadv:select_test' %}">模擬試験</a></span>
+    </div>
+</section>
+
+
+<div class="select-box-bg">
+    <div class="select-box">
+        <form action="" method="get">
+            <h2>出題対象</h2>
+            <div class="select_target">
+                {{ form.target }}
+                {{ form.target.errors }}
+            </div>
+            <h2>出題分野</h2>
+            <div class="select_question">
+                {{ form.chapter }}
+                {{ form.chapter.errors }}
+            </div>
+            <h2>出題数選択</h2>
+            <div class="select_answers" data-plan="{{ plan }}">
+
+            {% if not plan %}
+            <!-- 無料プラン or 有料プランの有効期限切れ -->
+            <a href="{% url 'corporate:jrfoodadv_plan' %}">
+                <p class="freeplan"><i class="fa fa-exclamation-triangle" style="color:#d8fa3b;"></i> {% if not one_question_a_day %}あなたは無料プランです。無料プランは1日1問です。{% else %}本日は解答済みです。有料プランでは無制限で利用できます。{% endif %}</p>
+            </a>
+            <select name="answers" class="answers" id="id_answers" data-one_question_a_day="{{ one_question_a_day }}" {% if one_question_a_day %}disabled{% endif %}>
+                <option value="1">1</option>
+            </select>
+            {% else %}
+            {% comment %}
+            <!-- 有料プラン -->
+            {% endcomment %}
+            {{ form.answers }} /
+            {{ form.answers.errors }}
+            {% endif %}
+
+            </div>
+            <button type="submit" class="invalid_button" disabled> 出題分野を選択してください</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="{% static 'js/jrfoodadv/index.js' %}"></script>
+{% endblock %}
+

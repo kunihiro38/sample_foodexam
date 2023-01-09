@@ -1,0 +1,121 @@
+{% load static %}
+{% load breadcrumb_extra_tag %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{% block page_title %}{% endblock %}</title>
+    <!-- google search console -->
+    <meta name="google-site-verification" content="1WsAu8bapyXxBhXpeSc-jsZkJicd1Z971WMXubzv0uA">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H063860R15"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-H063860R15');
+    </script>
+    <link rel="canonical" href="https://www.food-exam.com{{ request.path }}">
+    {# --- favicon --- #}
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    {% block head %}{% endblock %}
+    {# --- css --- #}
+    <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'corporate/css/corporate_base.css' %}">
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header">
+        <header>
+            <div class="header_bg">
+                <div class="header_cat">
+                    <div class="header_logo">
+                        {% comment %}
+                        <!-- HACK:画像サイズを強制的にheight:42pxにしているので、オリジナルで42pxにしたい -->
+                        <!-- index.htmlに置く時だけはSEO対策でh1タグを適用する -->
+                        {% endcomment %}
+                        {% if top_page %}
+                        <h1>
+                            <a href="/"><img src="{% static 'images/logo.png' %}" alt="食品業界資格支援のフードイグザム" height="42px"></a>
+                        </h1>
+                        {% else %}
+                        <a href="/"><img src="{% static 'images/logo.png' %}" alt="食品業界資格支援のフードイグザム" height="42px"></a>
+                        {% endif %}
+                    </div>
+                    <input type="checkbox" id="hamburger">
+                    <label for="hamburger">
+                        <span class="hamburger_icon">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </span>
+                    </label>
+                    <nav class="header_navi">
+                        <div class="header_navi_wrap">
+                            <ul class="header_navi_list">
+                                <li class="header_navi_item"><a href="{% url 'corporate:introduction' %}"><span>フードイグザムとは？</span></a></li>
+                                <li class="header_navi_item"><a href="{% url 'corporate:course' %}"><span>コース選択</span></a></li>
+                                {% if request.user.is_anonymous %}
+                                <li class="header_navi_item"><a href="{% url 'corporate:signin' %}"><span><i class="fa fa-sign-in"></i> ログイン</span></a></li>
+                                <li class="header_navi_item"><a href="{% url 'corporate:signup' %}"><button><i class="fa fa-plus" style="color:#fff;"></i> 新規登録</button></a></li>
+                                {% else %}
+                                <li class="header_navi_item"><a href="{% url 'corporate:setting' %}"><span>設定</span></a></li>
+                                <li class="header_navi_item"><a href="{% url 'corporate:profile' %}"><span>{{ request.user|truncatechars:16 }}さん</span></a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        {% block header %}{% endblock %}
+    </div>
+    <!-- ヘッダー -->
+
+
+    <!-- パンくずリスト -->
+    {% return_breadcrumbs request.path %}
+    <!-- パンくずリスト -->
+
+
+    <!-- メインコンテンツ -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    <!-- メインコンテンツ -->
+
+
+    <!-- フッター -->
+    <footer class="footer">
+        <section class="footer_section">
+            <nav class="footer_nav">
+                <ul class="footer_list">
+                    <li><a href="{% url 'corporate:terms' %}"><i class="fa fa-angle-right"></i> 利用規約</a></li>
+                    <li><a href="{% url 'corporate:policy' %}"><i class="fa fa-angle-right"></i> プライバシーポリシー</a></li>
+                    <li><a href="{% url 'corporate:law' %}"><i class="fa fa-angle-right"></i> 特定商取引に基づく表記</a></li>
+                    <li><a href="{% url 'corporate:inquiry' %}"><i class="fa fa-angle-right"></i> お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </section>
+        {% block footer %}{% endblock %}
+    </footer>
+    <!-- フッター -->
+
+
+    <hr>
+    <div class="copy_right">
+        <small>Copyright ©️ フードイグザム</small>
+    </div>
+    {# --- js ---#}
+    <!-- block extra_js -->
+    {% block extra_js %}{% endblock %}
+    <!-- endblock extra_js -->
+</body>
+
+</html>

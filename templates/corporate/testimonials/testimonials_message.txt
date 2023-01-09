@@ -1,0 +1,58 @@
+-----------------------------------
+サイトに合格体験記の投稿がありました。
+-----------------------------------
+
+[IPアドレス]
+{{ client_ip }}
+
+[ユーザエージェント]
+{{ user_agent }}
+
+[合格した試験]
+{{ exam_subject }}
+
+[利用したコース]
+{{ payment_course }}
+
+[利用したプラン]
+{{ payment_plan }}
+
+[ペンネーム]
+{{ pen_name }}
+
+[メールアドレス]
+{{ email }}
+上記emailでのユーザー登録があるか：{{ user_existence }}
+
+[タイトル]
+{{ title }}
+
+[受験日]
+{{ exam_date }}
+
+[取得点数]
+{{ points }}
+
+[何回目の受験か]
+{{ times }}
+
+[学習期間]
+{{ learning_time }}
+
+[参考にしたサイト]
+{{ referenced_site }}
+
+[学習方法]
+{{ learning_method }}
+
+[試験の感想]
+{{ impression }}
+
+[受験者へのアドバイス]
+{{ advice }}
+
+[次に受験予定の試験]
+{{ next_exam }}
+
+[フードイグザムの改善点、応援メッセージ]
+{{ improvements }}

@@ -1,0 +1,47 @@
+{% extends 'jrfoodadv/base/jrfoodadv_base.html' %}
+{% block page_title %}模擬試験{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+{% include 'jrfoodadv/_include/_content_wrapper.html'%}
+
+
+<section>
+    <div class="navi">
+        <span><a href="{% url 'jrfoodadv:index' %}">練習モード</a></span>
+        <span class="bold"><a href="{% url 'jrfoodadv:select_test' %}" class="background">模擬試験</a></span>
+    </div>
+</section>
+
+<div class="select-box-bg">
+    <div class="select-box">
+        <form action="" method="get">
+            <div class="select_random">
+            <h2>注意事項</h2>
+            <p>制限時間90分で、75問出題されます。</p>
+                {{ form.unquestioned_and_mistakes }}
+                {{ form.unquestioned_and_mistakes.errors }}
+            <ul class="select_random">
+                <li>・不正対策で、演習中に複数ブラウザ(複数ウィンドウ)で本問題集にアクセスすると模擬試験が強制終了します。</li>
+            </ul>
+            </div>
+
+            <!-- 無料プラン警告 -->
+            {% include 'jrfoodadv/_include/_free_plan_alert.html'%}
+            <!-- 無料プラン警告 -->
+
+            <button type="submit" name="start_button" data-plan="{{ plan }}" {% if not plan %}disabled{% endif %}>
+                <i class="fa fa-play" style="color:#fff;"></i> スタート
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block extra_js %}
+{% endblock %}

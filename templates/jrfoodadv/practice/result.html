@@ -1,0 +1,76 @@
+{% extends 'jrfoodadv/base/jrfoodadv_base.html' %}
+{% block page_title %}演習結果{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% load extra_tag %}
+
+{% block content %}
+<div class="practice_result_content">
+    <h2>演習結果</h2>
+    <hr>
+    <div class="result_msg">
+        <p>正解は <span>{{ total_number_of_correct_answers }} / {{ count_all_questions }}</span> 正答率は  <span>{% division total_number_of_correct_answers count_all_questions %} %</span> でした</p>
+    </div>
+    <div class="result_content">
+
+        {% include 'jrfoodadv/_include/_paging.html' %}
+
+        <p>※問題IDをクリックして、詳細を確認することができます。</p>
+        <table class="table-box">
+            <thead>
+                <tr>
+                    <th>番号</th>
+                    <th>正誤</th>
+                    <th>問題ID</th>
+                    <th class="memo"><!-- お気に入り --></th>
+                    <th class="favorite"><!-- お気に入り --></th>
+                    <th>設問内容</th>
+                    <th>分野</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for question in question_page %}
+                <tr>
+                    <td>{{ forloop.counter0|add:question_page.start_index  }}</td>
+                    <td>{% return_fontawesome question.current_answer %}</td>
+                    <td class="link_color">
+                        <a href="{% url 'jrfoodadv:practice_result_individual' question.question_id %}">{{ question.question_id }}</a>
+                    </td>
+                    <td class="memo">
+                        {% if question.memo %}
+                        <i class="fa fa-pencil red_color"></i>
+                        {% endif %}
+                    </td>
+                    <td class="favorite">
+                        {% if question.favorite %}
+                        <i class="fa fa-star blue_color"></i>
+                        {% endif %}
+                    </td>
+                    <td>{{ question.question_content }}</td>
+                    <td>{{ question.textbook_chapter }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% include 'jrfoodadv/_include/_paging.html' %}
+
+    <div class="result_box">
+        <div class="back">
+            <a href="{% url 'jrfoodadv:index' %}">トップページへ進む <i class="fa fa-chevron-right"></i></a>
+        </div>
+        {% if plan %}
+        {% if rechallenge_mistakes %}
+        <div>
+            <form action="{% url 'jrfoodadv:rechallenge_mistakes' %}" method="get">
+                <button type="submit" class="pre-back" name="rechallenge_mistakes">未解答とミスに再挑戦</button>
+            </form>
+        </div>
+        {% endif %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

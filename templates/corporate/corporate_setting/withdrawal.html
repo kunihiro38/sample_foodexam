@@ -1,0 +1,37 @@
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}退会の確認{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<div class="table-box del-record">
+    <h1>退会</h1>
+    <ul>
+        <li class="warning"><i class="fa fa-exclamation-triangle warning-orange-color"></i>
+            退会処理を実行します。</br>
+            この操作を実行すると、ユーザーデータ及び学習履歴も全て削除され、元に戻すことはできません。</li>
+        <li>確認のため、メールアドレスとパスワードを入力してください。</li>
+    </ul>
+    <form action="" method="post">
+    {% csrf_token %}
+    <dl>
+        <div>
+            <dt>メールアドレス</dt>
+            <dt>{{ form.email }}{{ form.email.errors }}</dt>
+        </div>
+        <div>
+            <dt>パスワード</dt>
+            <dt>{{ form.password }}{{ form.password.errors }}</dt>
+        </div>
+    </dl>
+    <div>
+        <button type="submit">退会処理を実行する</button>
+    </div>
+    </form>
+    <div class="back">
+        <a href="{% url 'corporate:setting' %}"><i class="fa fa-chevron-left"></i> 前のページに戻る</a>
+    </div>
+</div>
+
+{% endblock %}

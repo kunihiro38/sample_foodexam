@@ -1,0 +1,90 @@
+{% comment %}
+foodadv_base.html -> グローバルナビゲーションバーにhomeや設定があるのでいつでもトップページに戻れる
+foodadv_practice_base.html -> グローバルナビゲーションバーにhomeや設定がないので解答しかできない
+{% endcomment %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="noindex">
+    <title>{% block page_title %}{% endblock %}</title>
+    <!-- google search console -->
+    <meta name="google-site-verification" content="1WsAu8bapyXxBhXpeSc-jsZkJicd1Z971WMXubzv0uA">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H063860R15"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-H063860R15');
+    </script>
+
+    {# --- favicon --- #}
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    {# --- css --- #}
+    <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'jrfoodadv/css/jrfoodadv_base.css' %}">
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <div class="header">
+        <header>
+            <div class="header_bg">
+                <div class="header_cat">
+                    <div class="header_logo">
+                        {% comment %}
+                        <!-- <a href="/foodadv/"><img src="http://placehold.jp/150x30.png?text=foodadv" alt=""></a> -->
+                        <!-- HACK:画像サイズを強制的にheight:42pxにしているので、オリジナルで42pxにしたい -->
+                        {% endcomment %}
+                        <a href="/"><img src="{% static 'images/black-logo.png' %}" alt="logo" height="35px"></a>
+                    </div>
+                    <div class="course"><span class="foodadv_color">食品表示検定・中級</span></div>
+                    <input type="checkbox" id="hamburger">
+                    <label for="hamburger">
+                        <span class="hamburger_icon">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                        </span>
+                    </label>
+                    <nav class="header_navi">
+                        <div class="header_navi_wrap">
+                            <ul class="header_navi_list">
+                                <li class="header_navi_item"><a href="{% url 'foodadv:index' %}"><span><i class="fa fa-home"></i> 問題集TOP</span></a></li>
+                                <li class="header_navi_item"><a href="{% url 'foodadv:search' %}"><span><i class="fa fa-search"></i> 問題検索</span></a></li>
+                                <li class="header_navi_item"><a href="{% url 'foodadv:record_list' %}"><span><i class="fa fa-file-text-o"></i> 学習履歴</span></a></li>
+                                <li class="header_navi_item"><a href="{% url 'foodadv:setting' %}"><span><i class="fa fa-cog"></i> 設定</span></a></li>
+                                <li class="header_navi_item"><a href="{% url 'foodadv:profile' %}"><span><i class="fa fa-user"></i> {{ request.user|truncatechars:16 }}さん</span></a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+    </div>
+    <!-- ヘッダー -->
+
+
+    <!-- メインコンテンツ -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    <!-- メインコンテンツ -->
+
+
+
+    {# --- js ---#}
+    <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+    <!-- block extra_js -->
+    {% block extra_js %}{% endblock %}
+    <!-- endblock extra_js -->
+</body>
+
+</html>

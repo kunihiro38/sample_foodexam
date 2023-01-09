@@ -1,0 +1,27 @@
+{% comment %}
+<!-- _main_kv_001の昇華バージョン -->
+<!-- デモサイト参考： https://free-hp.net/ -->
+<!-- 画像のPCはめ込み参考URL： https://mockup.photos/pixabay/801263/laptop-paper-and-phone -->
+{% endcomment %}
+
+{% load static %}
+<div class="swiper-slide">
+    {% comment %}<!-- catchphrase_01はレスポンス時に表示させる。通常はnone -->{% endcomment %}
+    <div class="catchphrase_responsive">
+        <p>食品表示検定を<span class="main_kv_003_color">無料で学べる</span></p>
+    </div>
+    <div class="main_kv_003_container">
+        <img src="{% static 'images/laptop-paper-and-phone.jpg' %}" alt="">
+        {% comment %}<!-- catchphrase_02はレスポンス時に非表示。 -->{% endcomment %}
+        <div class="catchphrase_normal">
+            <p>食品表示検定を<span class="main_kv_003_color">無料で学べる</span></p>
+        </div>
+        <div class="main_kv_003_desc">
+            <p>練習モードと模擬試験モードで学習し放題!!</p>
+            <p>PC・スマホの両方で学べる!!</p>
+            <a href="{{ jrfoodadv_redirect_url }}" data-href="{{ jrfoodadv_redirect_url }}">
+                <button>無料ではじめる <i class="fa fa-caret-right main_kv_003_color"></i></button>
+            </a>
+        </div>
+    </div>
+</div>

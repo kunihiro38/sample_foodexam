@@ -1,0 +1,97 @@
+<!-- 合格体験記フォーム -->
+
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}合格体験記の投稿{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<form action="" method="post">
+{% csrf_token %}
+<div class="table-box signup">
+    <h1>合格体験記の投稿</h1>
+    <p><span style="color:red;">*</span> がある箇所は入力必須になります。</p>
+    <dl>
+        <div>
+            <dt>合格した試験<span style="color:red;">*</span></dt>
+            <dt>{{ form.exam_subject }}{{ form.exam_subject.errors }}</dt>
+        </div>
+        <div>
+            <dt>利用したコース<span style="color:red;">*</span></dt>
+            <dt>{{ form.payment_course }}{{ form.payment_course.errors }}</dt>
+        </div>
+        <div>
+            <dt>利用したプラン<span style="color:red;">*</span></dt>
+            <dt>{{ form.payment_plan }}{{ form.payment_plan.errors }}</dt>
+        </div>
+        <div>
+            <dt>ペンネーム<span style="color:red;">*</span></dt>
+            <dt>{{ form.pen_name }}{{ form.pen_name.errors }}</dt>
+            <p class="opacity">後日ホームページに掲載をされる名前になります。</p>
+        </div>
+        <div>
+            <dt>メールアドレス<span style="color:red;">*</span></dt>
+            <dt>{{ form.email }}{{ form.email.errors }}</dt>
+            <p class="opacity">有料会員登録時のメールアドレスの入力をお願いします。</p>
+        </div>
+        <div>
+            <dt>タイトル<span style="color:red;">*</span></dt>
+            <dt>{{ form.title }}{{ form.title.errors }}</dt>
+            <p class="opacity">例）無事1度目で合格しました、毎朝早起きして1時間学習を1ヶ月続けて合格しました。</p>
+        </div>
+        <div>
+            <dt>受験日<span style="color:red;">*</span></dt>
+            <dt>{{ form.exam_date }}{{ form.exam_date.errors }}</dt>
+        </div>
+        <div>
+            <dt>取得点数<span style="color:red;">*</span></dt>
+            <dt>{{ form.points }}{{ form.points.errors }}</dt>
+        </div>
+        <div>
+            <dt>何回目の受験か<span style="color:red;">*</span></dt>
+            <dt>{{ form.times }}{{ form.times.errors }}</dt>
+            <p class="opacity">例) 初めて、2回目、3回目</p>
+        </div>
+        <div>
+            <dt>学習期間<span style="color:red;">*</span></dt>
+            <dt>{{ form.learning_time }}{{ form.learning_time.errors }}</dt>
+            <p class="opacity">例) 60時間、3週間、1ヶ月、2ヶ月</p>
+        </div>
+        <div>
+            <dt>参考にしたサイト</dt>
+            <dt>{{ form.referenced_site }}{{ form.referenced_site.errors }}</dt>
+            <p class="opacity">例）フードイグザム</p>
+        </div>
+        <div>
+            <dt>学習方法<span style="color:red;">*</span></dt>
+            <dt>{{ form.learning_method }}{{ form.learning_method.errors }}</dt>
+            <p class="opacity">例）毎朝1時間、フードイグザムを繰り返し学習しわからない箇所はテキストで復習しました。</p>
+        </div>
+        <div>
+            <dt>試験の感想<span style="color:red;">*</span></dt>
+            <dt>{{ form.impression }}{{ form.impression.errors }}</dt>
+        </div>
+        <div>
+            <dt>受験者へのアドバイス<span style="color:red;">*</span></dt>
+            <dt>{{ form.advice }}{{ form.advice.errors }}</dt>
+        </div>
+        <div>
+            <dt>次に受験予定の試験</dt>
+            <dt>{{ form.next_exam }}{{ form.next_exam.errors }}</dt>
+            <p class="opacity">例）食品表示検定中級、ソムリエ、簿記3級</p>
+        </div>
+        <div>
+            <dt>フードイグザムの改善点、応援メッセージ</dt>
+            <dt>{{ form.improvements }}{{ form.improvements.errors }}</dt>
+        </div>
+        <div>
+            <button type="submit"><i class="fa fa-plus" style="color:#fff;"></i> 送信する</button>
+        </div>
+    </dl>
+    <div class="back">
+        <a href="{% url 'corporate:index' %}"><i class="fa fa-chevron-left"></i> 前のページに戻る</a>
+    </div>
+</div>
+</form>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}{{ testimonials.title }} {% if testimonials.title|length < 50 %}| フードイグザム{% endif %}{% endblock %}
+{% load static %}
+
+{% block head %}
+{% include 'corporate/_include/_google_adsense.html' %}
+<!-- OGP -->
+<meta property="og:title" content="{{ testimonials.title }} {% if testimonials.title|length < 50 %}| フードイグザム{% endif %}"/>
+<meta property="og:url" content="{{ site_url }}{{ request.path }}"/>
+<meta property="og:image" content="{{ site_url }}{% static 'images/goal_achievement.jpg' %}"/>
+<meta property="og:description" content="{{ testimonials.impression }}"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="フードイグザム"/>
+<meta name="twitter:card" content="summary"/>
+<!-- SEO -->
+<meta name="description" content="{{ testimonials.impression }}">
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'corporate/css/info_individual.css' %}">
+<link rel="stylesheet" href="{% static 'corporate/css/testimonials_individual.css' %}">
+{% endblock %}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<div class="info_content testimonials_individual">
+    <div class="congratulations_msg">
+        <img src="{% static 'images/pass.jpg' %}" alt="">
+        <p>合格おめでとうございます！</p>
+    </div>
+    <p class="category_tag">
+        <div class="category_tag">
+        {% if testimonials.exam_subject == testimonials.exam.JRFOODADV %}
+            <span class="category_pass_jrfoodadv"><i class="fa fa-tag" style="color:white;"></i> 初級合格</span>
+        {% elif testimonials.exam_subject == testimonials.exam.FOODADV %}
+            <span class="category_pass_foodadv"><i class="fa fa-tag" style="color:white;"></i> 中級合格</span>
+        {% endif %}
+        </div>
+    </p>
+    <p class="pen_name"><span class="testimonials_pen_name">{{ testimonials.pen_name }}</span> さんの合格体験記</p>
+    <h1 data-testimonials-id="{{ testimonials.id }}">{{ testimonials.title }}</h1>
+    <span class="created_at">公開日 <i class="fa fa-clock-o contributor"></i><time datetime="{{ testimonials.created_at|date:'Y-n-j H:i:s' }}" itemprop="”datepublished”"> {{ testimonials.published_at|date:"Y-n-j" }}</time></span>
+
+    <h2>利用したコース</h2>
+    <p>{{ testimonials.payment_course }}</p>
+    <h2>利用したプラン</h2>
+    <p>{{ testimonials.payment_plan }}</p>
+    <h2>受験日</h2>
+    <p>{{ testimonials.exam_date|date:"Y年n月j日" }}</p>
+    <h2>取得点数</h2>
+    <p>{{ testimonials.points }}</p>
+    <h2>何回目の受験か</h2>
+    <p>{{ testimonials.times }}</p>
+    <h2>学習期間</h2>
+    <p>{{ testimonials.learning_time }}</p>
+    <h2>参考にしたサイト</h2>
+    <p>{{ testimonials.referenced_site|default:"-" }}</p>
+    <h2>学習方法</h2>
+    <p>{{ testimonials.learning_method|linebreaks }}</p>
+    <h2>試験の感想</h2>
+    <p>{{ testimonials.impression|linebreaks }}</p>
+    <h2>受験者へのアドバイス</h2>
+    <p>{{ testimonials.advice|linebreaks }}</p>
+    <h2>次に受験予定の試験</h2>
+    <p>{{ testimonials.next_exam|default:"-" }}</p>
+    <h2>フードイグザムの改善点、応援メッセージ</h2>
+    <p>{{ testimonials.improvements|default:"-" }}</p>
+
+    <!-- ページング -->
+    <div class="paging">
+        {% if testimonials.next_page %}
+        <p class="next_page" data-next-testimonials-id="{{ testimonials.next_page.id }}"><a href="{% url 'corporate:testimonials_individual' testimonials.next_page.id %}"><i class="fa fa-chevron-left"></i> {{ testimonials.next_page.title }}</a></p>
+        {% endif %}
+
+        {% if testimonials.prev_page %}
+        <p class="prev_page" data-prev-testimonials-id="{{ testimonials.prev_page.id }}"><a href="{% url 'corporate:testimonials_individual' testimonials.prev_page.id %}">{{ testimonials.prev_page.title }} <i class="fa fa-chevron-right"></i></a></p>
+        {% endif %}
+    </div>
+    <!-- ページング -->
+
+    <div class="back">
+        <a href="{% url 'corporate:testimonials_list' %}"><i class="fa fa-chevron-left"></i> 合格体験記一覧に戻る</a>
+    </div>
+</div>
+{% endblock %}

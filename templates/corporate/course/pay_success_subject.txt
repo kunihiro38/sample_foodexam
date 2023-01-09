@@ -1,0 +1,1 @@
+【フードイグザム】{{ course_description }}の支払い完了

@@ -1,0 +1,14 @@
+{% extends 'jrfoodadv/base/jrfoodadv_base.html' %}
+{% block page_title %}学習履歴の削除の成功{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<div class="table-box del-record">
+    <p>学習履歴を削除しました。</p>
+    <div class="back">
+        <a href="{% url 'jrfoodadv:index' %}"><i class="fa fa-chevron-left"></i> トップページに戻る</a>
+    </div>
+</div>
+{% endblock %}

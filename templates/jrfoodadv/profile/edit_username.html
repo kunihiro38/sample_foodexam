@@ -1,0 +1,31 @@
+{% extends 'jrfoodadv/base/jrfoodadv_base.html' %}
+{% block page_title %}アカウント名編集{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="table-box edit-profile-table">
+        <h1>アカウント名編集</h1>
+        <dl>
+            <div>
+                <dt>現在のアカウント名</dt>
+                <dt class="bold">{{ username }}</dt>
+            </div>
+            <div>
+                <dt>新しいアカウント名</dt>
+                <dt>{{ form.username }}{{ form.username.errors }}</dt>
+            </div>
+            <div>
+                <button type="submit"><i class="fa fa-plus" style="color:#fff;"></i> 変更する</button>
+            </div>
+        </dl>
+        <div class="back">
+            <a href="{% url 'jrfoodadv:profile' %}"><i class="fa fa-chevron-left"></i> 前のページに戻る</a>
+        </div>
+</form>
+</div>
+
+{% endblock %}

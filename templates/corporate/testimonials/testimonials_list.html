@@ -1,0 +1,20 @@
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}合格体験記一覧{% endblock %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block head %}
+{% include 'corporate/_include/_google_adsense.html' %}
+<!-- SEO -->
+<meta name="description" content="食品業界資格支援のフードイグザムの合格体験記一覧です。">
+{% endblock %}
+
+{% block content %}
+
+<div class="table-box info_list_box">
+    <h1>合格体験記一覧</h1>
+    {% include 'corporate/_include/_testimonials_list.html' %}
+</div>
+{% endblock %}

@@ -1,0 +1,8 @@
+
+<p class="question_title">{{ question.question_title }}</p>
+<p class="sub_question_title">{{ question.sub_question_title|default_if_none:""|linebreaks }}</p>
+
+<img src="{{ MEDIA_URL }}{{ question.question_img }}" alt="{{ question.question_img }}"
+    class="{% if question.question_type == 'label' %}resize_img_for_label{% else%}resize_img_for_mark{% endif %}"
+    data-question_type="{{ question.question_type }}"
+    >

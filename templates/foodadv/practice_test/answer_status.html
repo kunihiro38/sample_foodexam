@@ -1,0 +1,53 @@
+{% extends 'foodadv/base/foodadv_practice_test_base.html' %}
+{% block page_title %}解答状況{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div class="answer_status_back">
+    <a href="/"><i class="fa fa-chevron-left"></i> 前のページに戻る</a>
+</div>
+<div class="answer_status">
+    <div class="answer_status_container">
+    {% for question in question_info %}
+    <a href="{{ question.url }}">
+        <div class="answer_status_item
+                {% if question.answer %}
+                answered
+                {% else %}
+                unanswered
+                {% endif %}
+                {% if question.record.later %}
+                later
+                {% endif %}
+                "
+                data-question-id="{{ question.question_id }}"
+                data-question-answer="{{ question.answer }}">
+                {{ forloop.counter }}
+        </div>
+    </a>
+    {% endfor %}
+    </div>
+    <div class="answer_status_description">
+        <div class="answer_status_item unanswered"></div>
+        <p>未解答</p>
+        <div class="answer_status_item answered"></div>
+        <p>解答ずみ</p>
+        <div class="answer_status_item later"></div>
+        <p>あとでやる</p>
+        <div class="answer_status_item answering"></div>
+        <p>解答中</p>
+    </div>
+</div>
+<div class="answer_status_back">
+    <a href="/"><i class="fa fa-chevron-left"></i> 前のページに戻る</a>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/foodadv/practice.js' %}"></script>
+<script src="{% static 'js/foodadv/practice_test.js' %}"></script>
+{% endblock %}

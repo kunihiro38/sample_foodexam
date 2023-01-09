@@ -1,0 +1,76 @@
+{% extends 'jrfoodadv/base/jrfoodadv_practice_base.html' %}
+{% block page_title %}確認{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<div class="practice_content">
+    <div class="confirm_box">
+        <h2>確認</h2>
+        <hr>
+        {% if unanswerd_flg %}
+        <p>未解答の問題があります。答え合わせしますか？</p>
+        {% endif %}
+        <div class="button_layout">
+                <form action="{% url 'jrfoodadv:back_to_last_page' last_page_question_id %}" method="get">
+                    <button type="submit" class="pre-back" name="back_button">
+                        <i class="fa fa-arrow-left" style="color:#fff;"></i> もどる</button>
+                </form>
+            <form action="" method="post">
+                {% csrf_token %}
+                <button type="submit">答え合わせする <i class="fa fa-arrow-right" style="color:#fff;"></i></button>
+            </form>
+        </div>
+        {% if first_unanswerd_url %}
+        <a href="{{ first_unanswerd_url }}" id="list_review_flg">
+            <button type="button" class="review">
+                <i class="fa fa-arrow-left" style="color:#fff;"></i> 未回答の問題を見直す</button>
+        </a>
+        {% endif %}
+    </div>
+    {% if unanswerd_flg %}
+    <div class="unanswered_content">
+        <h3>未解答の問題</h3>
+
+        {% include 'jrfoodadv/_include/_paging.html' %}
+
+        <table class="table-box">
+            <p>※問題IDをクリックすると、問題にとぶことができます。</p>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>問題ID</th>
+                    <th>設問内容</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for question in question_page %}
+                <tr>
+                    {% comment %}
+                    {# question.page_num #}を採用する前の旧コード。一応残し。
+                    <!-- <td>{{ forloop.counter0|add:question_page.start_index }}</td> -->
+                    {% endcomment %}
+                    <td data-page-num="{{ question.page_num }}">{{ question.page_num }}</td>
+                    <td class="link_color" data-question-id="{{ question.question_id }}">
+                        <a href="{{ question.url }}" id="question_id_review_flg">{{ question.question_id }}</a>
+                    </td>
+                    <td>{{ question.question_content }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% include 'jrfoodadv/_include/_paging.html' %}
+
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/jrfoodadv/practice_finish_confirm.js' %}"></script>
+{% endblock %}

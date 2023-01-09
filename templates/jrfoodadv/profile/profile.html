@@ -1,0 +1,46 @@
+<!-- プロフィール -->
+
+{% extends 'jrfoodadv/base/jrfoodadv_base.html' %}
+{% block page_title %}プロフィール{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<div class="table-box profile-table">
+    <h1>プロフィール</h1>
+    <p>プロフィールは<a href="{% url 'corporate:profile' %}"><span class="link_color">こちら<i class="fa fa-question-circle-o link_color"></i> </span></a>から編集できます。</p>
+    <table>
+        <tr>
+            <th>アカウント名</th>
+            <td>{{ user_info.username|truncatechars:16 }}</td>
+        </tr>
+        <tr>
+            <th>メールアドレス</th>
+            <td>{{ user_info.email }}</td>
+        <tr>
+            <th>パスワード</th>
+            <td>******</td>
+        </tr>
+        <tr>
+            <th>コース</th>
+            <td>{{ user_info.payment_course }}</td>
+        </tr>
+        <tr>
+            <th>支払日</th>
+            <td>{{ user_info.paid_at|date:"Y年n月j日(D) H時i分" }}</td>
+        </tr>
+        <tr>
+            <th>有効期限</th>
+            <td>{{ user_info.expired_at|date:"Y年n月j日(D) H時i分" }}</td>
+        </tr>
+    </table>
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit">ログアウトする</button>
+    </form>
+    <div class="back">
+        <a href="{% url 'jrfoodadv:index' %}"><i class="fa fa-chevron-left"></i> トップページに戻る</a>
+    </div>
+</div>
+{% endblock %}

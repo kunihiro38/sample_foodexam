@@ -1,0 +1,58 @@
+/* information専用のCSS */
+/* 基本的に全て先頭に.descをつける */
+.info_content h1{
+    letter-spacing: 2px;
+}
+
+.desc h2{
+    background: #f7f7f7;
+    border-left: 8px solid #4865b2;
+    letter-spacing: 2px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.desc h3{
+    border-left: 8px solid #4865b2;
+    letter-spacing: 2px;
+    padding: 0.5rem 2rem;
+    margin: 2rem 0;
+}
+.desc p{
+    line-height: 2em;
+    margin: 0 0 5rem 0;
+}
+.desc a{
+    border-bottom: 1px solid #3067B0;
+}
+.desc .under_blue{
+    border-bottom: solid 3px #87CEFA;
+}
+.desc img{
+    padding: 4rem;
+}
+.desc ul,
+.desc ol{
+    padding: 1em 4%;
+    margin: 2rem;
+    border: dashed 1px #4865b2;
+    border-radius: .2em;
+    background-color: #f8f9ff;
+}
+
+.desc dl,
+.desc td,
+.desc dd {
+    display: table-cell;
+}
+
+.desc .nowrap{
+    white-space: nowrap;
+}
+.next_page,
+.prev_page{
+    padding: 1rem 0;
+}
+.prev_page{
+    text-align: right;
+}

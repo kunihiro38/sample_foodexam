@@ -1,0 +1,98 @@
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}食品表示検定・中級コース | {{ plan_name }}{% endblock %}
+
+
+{% comment %}
+<!-- _foodadv_plan.htmlは3つのプランを用意しており3つのテンプレートで使用される -->
+<!-- またほぼ jrfoodadv_plan/_plan.html と内容は同じ -->
+<!-- foodadv_plan_monthly.html -->
+<!-- foodadv_plan_10days.html -->
+<!-- foodadv_plan_3days.html -->
+{% endcomment %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+{% load humanize %}
+<style type="text/css">
+#payjp_checkout_box input[type=button]{
+    background: #ff8d26;
+    border-bottom: .1rem solid #FFFFFF;
+    border-left: .2rem solid #FFFFFF;
+    border-radius: 3.2rem;
+    border-right: .2rem solid #FFFFFF;
+    border-top: .2rem solid #FFFFFF;
+    box-shadow: 0rem 0rem 0rem .1rem #ff8d26;
+    color: #fff;
+    height: 4rem;
+    justify-content: center;
+    padding: 0 2rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+</style>
+
+<div class="table-box">
+    <h1>食品表示検定・初級コース | {{ plan_name }} 支払い</h1>
+    <p>支払い完了後すぐに利用開始できます。</p>
+    <table>
+        <tr>
+            <th>コース</th>
+            <td>食品表示検定・初級コース</td>
+        </tr>
+        <tr>
+            <th>プラン</th>
+            <td>{{ plan_name }}</td>
+        </tr>
+        <tr>
+            <th>問題総数</th>
+            <td>{{ count_jrfoodadv }} 問</td>
+        </tr>
+        <tr>
+            <th>金額</th>
+            <td>{{ amount|intcomma:False }} 円 (税込)</td>
+        </tr>
+        <tr>
+            <th>利用可能期間</th>
+            <td>{{ usable_period }} 日</td>
+        </tr>
+        <tr>
+            <th>有効期限</th>
+            <td>{{ expired_at|date:"Y年n月j日(D) H時i分" }}</td>
+        </tr>
+        <tr>
+            <th>支払い方法</th>
+            <td>クレジットカード</td>
+        </tr>
+    </table>
+    <p>※クレジットカード以外の支払い方法をご希望の方は、<a href="{% url 'corporate:inquiry' %}"><span class="link_color">お問い合わせフォーム
+                    <i class="fa fa-question-circle-o link_color"></i> </span></a>までご連絡ください。</p>
+
+    <div class="about_service">
+        <h2>{{ plan_name }}</h2>
+        <ul>
+            <li><i class="fa fa-check-circle-o symbol_color"></i> 練習モード解き放題</li>
+            <li><i class="fa fa-check-circle-o symbol_color"></i> 模擬試験モード解き放題</li>
+            <li><i class="fa fa-check-circle-o symbol_color"></i> {{ usable_period }}日間使い放題</li>
+        </ul>
+    </div>
+
+    {% if request.user.is_anonymous %}
+    <p>利用には、<a href="{% url 'corporate:signup' %}"><span class="link_color">会員登録</span></a> が必要になります。</p>
+    {% else %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <script type="text/javascript"
+            src="https://checkout.pay.jp"
+            class="payjp-button"
+            data-key="{{ public_key }}">
+        </script>
+    </form>
+    {% endif %}
+    <div class="back">
+        <a href="{% url 'corporate:jrfoodadv_plan' %}"><i class="fa fa-chevron-left"></i> プラン選択に戻る</a>
+    </div>
+</div>
+
+{% endblock %}

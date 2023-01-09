@@ -1,0 +1,46 @@
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}フードイグザムとは？{% endblock %}
+
+{% block head %}
+<!-- OGP -->
+<meta property="og:title" content="フードイグザムとは？"/>
+<meta property="og:url" content="https://www.food-exam.com/introduction/"/>
+<meta property="og:image" content="https://www.food-exam.com/static/images/fruits.jpg" />
+<meta property="og:description" content="食品業界資格支援のフードイグザムは、食品表示検定初級をはじめとした食品業界の資格合格を目指す人を応援するeラーニングのwebアプリです。ユーザー登録をするとwebアプリで問題集が利用できるようになります。ここでは食品表示検定初級のwebアプリの使い方及び紹介をしています。"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="フードイグザム"/>
+<meta name="twitter:card" content="summary"/>
+<!-- SEO -->
+<meta name="description" content="食品業界資格支援のフードイグザムは、食品表示検定初級をはじめとした食品業界の資格合格を目指す人を応援するeラーニングのwebアプリです。ユーザー登録をするとwebアプリで問題集が利用できるようになります。ここでは食品表示検定初級のwebアプリの使い方及び紹介をしています。">
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="table-box" style="text-align: left;">
+    <h1>フードイグザムとは？</h1>
+    <div class="description">
+    <p>食品表示検定初級をはじめとした食品業界の資格合格を目指す人を応援するeラーニングのwebアプリです。</p>
+    <p>食品業界で習得が求められる、食品表示検定の初級や各種資格をeラーニングのwebアプリで簡単に学べることができます。</p>
+    </div>
+
+    {% include 'corporate/_include/_food_exam_feature.html' %}
+
+    <div class="frame_wrapper">
+        <h2>動画による使い方の紹介</h2>
+        <div class="frame_wrapper__video">
+            <iframe src="https://www.youtube.com/embed/lSn-wYAo9is"
+            frameborder="0"
+            allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+    <br>
+    <a href="/"><i class="fa fa-angle-left"></i> トップページへ戻る</a>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/corporate/utils.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'foodadv/base/foodadv_base.html' %}
+{% block page_title %}更新{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<div class="table-box"
+    data-username="{{ username }}"
+    data-email="{{ email }}">
+    <p style="text-align:left;">更新しました。</p>
+    <div class="back">
+        <a href="{% url 'foodadv:profile' %}"><i class="fa fa-chevron-left"></i> プロフィールに戻る</a>
+    </div>
+</div>
+
+
+{% endblock %}

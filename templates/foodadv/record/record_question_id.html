@@ -1,0 +1,96 @@
+{% extends 'foodadv/base/foodadv_base.html' %}
+{% block page_title %}問題ID個別{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% load static %}
+{% load extra_tag %}
+
+{% block content %}
+<div class="practice_content">
+    <div class="top_wrapper">
+        <ul>
+            <li>問題ID</li>
+            <li>{{ question.question_id }}</li>
+        </ul>
+        <ul>
+            <li>分野</li>
+            <li>{{ question.textbook_chapter_as_str }}</li>
+        </ul>
+        <div class="record_box">
+            <ul>
+                <li>履歴</li>
+                <li>{% return_fontawesome question.first_answer %}</li>
+                <li>{% return_fontawesome question.second_answer %}</li>
+                <li>{% return_fontawesome question.third_answer %}</li>
+                <li>{% return_fontawesome question.fourth_answer %}</li>
+                <li>{% return_fontawesome question.fifth_answer %}</li>
+            </ul>
+            <ul>
+                <li>最新解答日時</li>
+                <li>{{ question.saved_at|date:"Y年n月j日(D) H時i分"|default:"&#x2796;" }}</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info_box result_info_box">
+        <button type="button" class="{% if question.memo %}memo_is_true{% endif %}" id="memo" data-question-id="{{ question.question_id }}">
+            <i id="i_memo" class="fa fa-pencil {% if question.memo %}memo_is_true{% endif %}"></i> メモ</button>
+        <button type="button" class="{% if question.favorite %}favorite_is_true{% endif %}" id="favorite" data-question-id="{{ question.question_id }}">
+            <i id="i_favorite" class="fa fa-star-o {% if question.favorite %}favorite_is_true{% endif %}"></i> お気に入り</button>
+    </div>
+
+    <!-- 問題文 -->
+    {% include 'foodadv/_include/_question_content.html'%}
+    <!-- 問題文 -->
+
+    <!-- 解答選択 -->
+    {% include 'foodadv/_include/_answer_selection.html'%}
+    <!-- 解答選択 -->
+
+    <details open>
+        <summary>正解</summary>
+        <ul>
+            <li class="strong">正解</li>
+            <li class="like_skyblue strong correct_answer" data_correct_answer="{{ question.correct_answer }}">
+                {% if question.correct_answer == 'choice_a'%}
+                {{ question.choice_a }}
+                {% elif question.correct_answer == 'choice_b' %}
+                {{ question.choice_b }}
+                {% elif question.correct_answer == 'choice_c' %}
+                {{ question.choice_c }}
+                {% elif question.correct_answer == 'choice_d' %}
+                {{ question.choice_d }}
+                {% else %}
+                {% endif %}
+            </li>
+            <li class="strong">解説</li>
+            <li>{{ question.commentary }}</li>
+        </ul>
+    </details>
+</div>
+
+
+<!-- メモ/モーダルダイアログ -->
+<div class="popup" id="js-popup">
+    <div class="popup-inner">
+        <div class="close-btn" id="js-close-btn">
+            <div class="close-icon"></div>
+        </div>
+        <div class="modal-container">
+            <p class="bold">メモ</p>
+            <textarea name="memo" cols="50" rows="9" maxlength="512">{{ question.memo }}</textarea>
+            <button id="popup-btn">保存して閉じる</button>
+        </div>
+    </div>
+    <div class="black-background" id="js-black-bg"></div>
+</div>
+<!-- メモ/モーダルダイアログの設置 -->
+
+
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/foodadv/practice.js' %}"></script>
+<script src="{% static 'js/foodadv/record_question_id.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,43 @@
+<!-- 問い合わせフォーム -->
+
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}問い合わせ{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<form action="" method="post">
+{% csrf_token %}
+<div class="table-box">
+    <h1>お問い合わせ</h1>
+    <div class="inquiry_desc">
+        <p>本サイトの<span class="link_color"><a href="{% url 'corporate:policy' %}">プライバシーポリシー</a></span>に同意していただいた上でご連絡ください。</p>
+        <p>TwitterのDMからでも受け付けております。</p>
+        <p><span class="link_color"><a href="https://twitter.com/food_exam" target="_blank">@フードイグザム【公式】</a></span>をフォローの上、お気軽にご連絡をください。</p>
+    </div>
+    <table class="inquiry_table">
+        <tr>
+            <th>氏名</th>
+            <td>{{ form.name }}{{ form.name.errors }}</td>
+        </tr>
+        <tr>
+            <th>メールアドレス</th>
+            <td>{{ form.email }}{{ form.email.errors }}</td>
+        </tr>
+        <tr>
+            <th>件名</th>
+            <td>{{ form.subject}}{{ form.subject.errors }}</td>
+        </tr>
+        <tr>
+            <th>お問い合わせ内容</th>
+            <td>{{ form.message }}{{ form.message.errors }}</td>
+        </tr>
+    </table>
+    <button type="submit">お問い合わせを送信する</button>
+    <div class="back">
+        <a href="{% url 'corporate:index' %}"><i class="fa fa-chevron-left"></i> トップページに戻る</a>
+    </div>
+</div>
+</form>
+{% endblock %}

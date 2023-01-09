@@ -1,0 +1,71 @@
+{% extends 'foodadv/base/foodadv_practice_test_base.html' %}
+{% block page_title %}模擬試験{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+
+    <div class="practice_content">
+
+        {% for question in question_page %}
+        <div class="top_wrapper">
+            <ul>
+                <li>問題ID</li>
+                <li>{{ question.question_id }}</li>
+            </ul>
+        </div>
+
+        <!-- 問題文 -->
+        {% include 'foodadv/_include/_question_content.html'%}
+        <!-- 問題文 -->
+
+        <!-- 解答選択 -->
+        {% include 'foodadv/_include/_answer_selection.html'%}
+        <!-- 解答選択 -->
+
+        <div class="paging_box">
+            <!-- practice_finish_confirmから飛んできた時は「もどる」ボタンを表示させない -->
+            {% if not practice_finish_confirm_session %}
+            {% if question_page.has_previous %}
+            <a href="?page={{ question_page.previous_page_number }}">
+                <button type="button"><i class="fa fa-arrow-left" style="color:#fff;"></i> もどる</button>
+            </a>
+            {% endif %}
+            {% endif %}
+            {% if question_page.has_next %}
+            <button type="submit">すすむ <i class="fa fa-arrow-right" style="color:#fff;"></i></button>
+            {% else %}
+            <button type="submit">すすむ <i class="fa fa-arrow-right" style="color:#fff;"></i></button>
+            <!-- <a href="{% url 'foodadv:practice_finish_confirm' %}">すすむ <i class="fa fa-arrow-right" style="color:#fff;"></i></a> -->
+            {% endif %}
+        </div>
+
+        <!-- あとでやる -->
+        <div class="info_box">
+            <button type="button" class="{% if question.record.later %}later_is_true{% endif %}" id="later" data-question-id="{{ question.question_id }}">
+                <i class="fa fa-hand-paper-o"></i> あとでやる</button>
+        </div>
+        <!-- あとでやる -->
+
+        <!-- 解答状況 -->
+        <div class="info_box">
+            <a href="{% url 'foodadv:answer_status' %}" class="info_answer_status">
+                <span class="white_color"><i class="fa fa-tasks white_color"></i> 解答状況</span>
+            </a>
+        </div>
+        <!-- 解答状況 -->
+    </div>
+</form>
+
+{% endfor %}
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/foodadv/practice.js' %}"></script>
+<script src="{% static 'js/foodadv/practice_test.js' %}"></script>
+{% endblock %}

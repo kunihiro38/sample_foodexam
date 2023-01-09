@@ -1,0 +1,52 @@
+<!-- 特定商取引に基づく表記 -->
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}特定商取引に基づく表記{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+{% load humanize %}
+<div class="table-box">
+    <h1>特定商取引に基づく表記</h1>
+    <table class="inquiry_table">
+        <tr>
+            <th>販売サイト</th>
+            <td>{{ site_url }}</td>
+        </tr>
+        <tr>
+            <th>問い合わせ先</th>
+            <td><a href="{% url 'corporate:inquiry' %}"><span class="link_color">お問い合わせフォーム<i class="fa fa-question-circle-o link_color"></i> </span></a>よりお問い合わせください。</td>
+        </tr>
+        <tr>
+            <th>販売価格</th>
+            <td>{{ amount|intcomma:False }}円 (税込) 〜</td>
+        </tr>
+        <tr>
+            <th>代金の支払い方法</th>
+            <td>クレジットカード</td>
+        </tr>
+        <tr>
+            <th>代金の返還について</th>
+            <td>ご入金後に代金の返還は出来ません。</td>
+        </tr>
+        <tr>
+            <th>商品の引き渡し時期</th>
+            <td>代金決済完了後、メールにて配信いたします。</td>
+        </tr>
+        <tr>
+            <th>商品の引き渡し方法</th>
+            <td>指定URLよりログインしてご利用ください。</td>
+        </tr>
+        <tr>
+            <th>不良品について</th>
+            <td>ログインできなかった場合は、ご連絡をいただければ別の方法でログイン方法を案内いたします。</td>
+        </tr>
+    </table>
+    <p>※上記以外の事項に関しましては、お取引の際に請求があれば遅延なく提示いたします。</p>
+    <div class="back">
+        <a href="{% url 'corporate:index' %}"><i class="fa fa-chevron-left"></i> トップページに戻る</a>
+    </div>
+</div>
+
+{% endblock %}

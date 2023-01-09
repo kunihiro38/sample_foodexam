@@ -1,0 +1,83 @@
+<!-- {% extends 'corporate/base/base.html' %}
+{% block page_title %}食品表示検定・初級コース支払い{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+{% load humanize %}
+<style type="text/css">
+#payjp_checkout_box input[type=button]{
+    background: #ff8d26;
+    border-bottom: .1rem solid #FFFFFF;
+    border-left: .2rem solid #FFFFFF;
+    border-radius: 3.2rem;
+    border-right: .2rem solid #FFFFFF;
+    border-top: .2rem solid #FFFFFF;
+    box-shadow: 0rem 0rem 0rem .1rem #ff8d26;
+    color: #fff;
+    height: 4rem;
+    justify-content: center;
+    padding: 0 2rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+</style>
+
+<div class="table-box">
+    <h1>食品表示検定・初級コース支払い</h1>
+    <p>支払い完了後に利用開始できます。</p>
+    <table>
+        <tr>
+            <th>コース</th>
+            <td>食品表示検定・初級コース</td>
+        </tr>
+        <tr>
+            <th>問題総数</th>
+            <td>全{{ count_jrfoodadv }}問</td>
+        </tr>
+        <tr>
+            <th>金額</th>
+            <td>{{ amount|intcomma:False }}円 (税込)</td>
+        </tr>
+        <tr>
+            <th>利用可能期間</th>
+            <td>{{ usable_period }} 日</td>
+        </tr>
+        <tr>
+            <th>有効期限</th>
+            <td>{{ expired_at|date:"Y年n月j日(D) H時i分" }}</td>
+        </tr>
+        <tr>
+            <th>支払い方法</th>
+            <td>クレジットカード</td>
+        </tr>
+    </table>
+    <p>※クレジットカード以外の支払い方法をご希望の方は、<a href="{% url 'corporate:inquiry' %}"><span class="link_color">お問い合わせフォーム
+                    <i class="fa fa-question-circle-o link_color"></i> </span></a>までご連絡ください。</p>
+
+    {% include 'corporate/_include/_food_exam_feature.html' %}
+
+    {% if request.user.is_anonymous %}
+    <p>利用には、<a href="{% url 'corporate:signup' %}"><span class="link_color">会員登録</span></a> が必要になります。</p>
+    {% else %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <script type="text/javascript"
+            src="https://checkout.pay.jp"
+            class="payjp-button"
+            data-key="{{ public_key }}">
+        </script>
+    </form>
+    {% endif %}
+    <div class="back">
+        <a href="{% url 'corporate:course' %}"><i class="fa fa-chevron-left"></i> コース選択に戻る</a>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+ -->

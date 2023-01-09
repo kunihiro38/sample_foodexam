@@ -1,0 +1,34 @@
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}支払い完了{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="table-box" style="text-align: left;">
+    <p>支払いが完了しました。</p>
+    <p>支払い情報をメールで送信しました。</p>
+    <br>
+    <p>メールに記載されているリンク、もしくは以下から学習を開始してください。</p>
+    <br>
+    <br>
+    <div class="course_section_inner">
+        <div class="course_cat">
+            <ul class="course_wrap">
+                <li class="course_list">
+                    <a href="{{ foodadv_redirect_url }}">
+                        <h3 class="course_title">食品表示検定・中級</h3>
+                        <div class="course_img">
+                            <img src="{% static 'images/apple.jpg' %}" alt="">
+                        </div>
+                        <div class="course_desc">全{{ count_foodadv }}問を用意しました。</br>最新の表示法に対応しています。</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <br>
+    <a href="/"><i class="fa fa-angle-left"></i> トップページへ戻る</a>
+</div>
+{% endblock %}

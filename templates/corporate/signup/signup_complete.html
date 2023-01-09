@@ -1,0 +1,17 @@
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}アカウント登録完了{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="table-box" style="text-align: left;">
+    <p>本登録が完了しました。</p>
+    <p>引き続きコース選択を進めてください。</p>
+    <br>
+    <span class="link_color"><a href="{% url 'corporate:course' %}">コース選択へ進む <i class="fa fa-angle-right link_color"></i> </a></span>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,73 @@
+{% extends 'jrfoodadv/base/jrfoodadv_base.html' %}
+{% block page_title %}履歴お気に入り一覧{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<div class="record_box">
+    <h1>履歴</h1>
+</div>
+
+<section>
+    <div class="record_navi">
+        <span><a href="{% url 'jrfoodadv:record_list' %}">履歴一覧</a></span>
+        <span><a href="{% url 'jrfoodadv:memos' %}">メモ</a></span>
+        <span><a href="{% url 'jrfoodadv:favorites' %}" class="record_navi_background">お気に入り</a></span>
+    </div>
+</section>
+
+{% if total_number_of_favorites %}
+<div class="record_content">
+    <div class="result_msg">
+        <p><span>{{ total_number_of_favorites }}</span> 件のお気に入りがあります。</p>
+    </div>
+    <div class="result_content">
+
+        {% include 'jrfoodadv/_include/_paging.html' %}
+
+        <p>※問題IDをクリックして、詳細を確認することができます。</p>
+        <table class=table-box>
+            <thead>
+                <tr>
+                    <th>番号</th>
+                    <th>問題ID</th>
+                    <th class="favorite"><!-- お気に入り --></th>
+                    <th>設問内容</th>
+                    <th>分野</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for question in question_page %}
+                <tr>
+                    <td>{{ forloop.counter0|add:question_page.start_index }}</td>
+                    <td class="link_color">
+                        <a href="{% url 'jrfoodadv:record_question_id' question.question_id %}">{{ question.question_id }}</a>
+                    </td>
+                    <td class="favorite">
+                        {% if question.favorite %}
+                        <i class="fa fa-star blue_color"></i>
+                        {% endif %}
+                    </td>
+                    <td>{{ question.question_content}}</td>
+                    <td>{{ question.textbook_chapter }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% include 'jrfoodadv/_include/_paging.html' %}
+
+    </div>
+
+{% else %}
+<div class="record_content">
+    <div class="result_msg">
+        <p>登録されているお気に入りはありません。</p>
+    </div>
+{% endif %}
+<div class="back">
+    <a href="{% url 'jrfoodadv:index' %}"><i class="fa fa-chevron-left"></i> トップページに戻る</a>
+</div>
+</div>
+{% endblock %}

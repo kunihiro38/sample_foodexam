@@ -1,0 +1,30 @@
+{% extends 'foodadv/base/foodadv_base.html' %}
+{% block page_title %}学習履歴の削除{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<div class="table-box del-record">
+    <h1>学習履歴の削除</h1>
+    <ul>
+        <li class="warning"><i class="fa fa-exclamation-triangle" style="color:#CC7600;"></i>
+            学習履歴の削除を実行します。</br>この操作を実行すると、学習履歴を元に戻すことはできません。</li>
+        <li>確認のため、<span class="clearly">{{ request.user }}</span> を入力してください。</li>
+        <form action="" method="post">
+            {% csrf_token %}
+            <li>{{ form.username }}</li>
+            <li>{{ form.username.errors }}</li>
+
+            <!-- 無料プラン警告 -->
+            {% include 'foodadv/_include/_free_plan_alert.html'%}
+            <!-- 無料プラン警告 -->
+
+            <li><button type="submit" data-plan="{{ plan }}" {% if not plan %}disabled{% endif %}>学習履歴を削除する</button></li>
+    </ul>
+    </form>
+    <div class="back">
+        <a href="{% url 'foodadv:setting' %}"><i class="fa fa-chevron-left"></i> 前のページに戻る</a>
+    </div>
+</div>
+{% endblock %}

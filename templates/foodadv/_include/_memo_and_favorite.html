@@ -1,0 +1,7 @@
+
+<div class="info_box">
+    <button type="button" class="{% if question.record.memo %}memo_is_true{% endif %}" id="memo" data-question-id="{{ question.question_id }}">
+        <i id="i_memo" class="fa fa-pencil {% if question.record.memo %}memo_is_true{% endif %}"></i> メモ</button>
+    <button type="button" class="{% if question.record.favorite %}favorite_is_true{% endif %}" id="favorite" data-question-id="{{ question.question_id }}">
+        <i id="i_favorite" class="fa fa-star-o {% if question.record.favorite %}favorite_is_true{% endif %}"></i> お気に入り</button>
+</div>

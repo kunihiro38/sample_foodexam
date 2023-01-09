@@ -1,0 +1,56 @@
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}コース選択{% endblock %}
+
+{% block head %}
+<!-- OGP -->
+<meta property="og:title" content="コース選択 | フードイグザム"/>
+<meta property="og:url" content="https://www.food-exam.com/course/"/>
+<meta property="og:image" content="https://www.food-exam.com/static/images/fruits.jpg" />
+<meta property="og:description" content="食品業界資格支援のフードイグザムは、食品表示検定初級をはじめとした食品業界の資格合格を目指す人を応援するeラーニングのwebアプリです。ユーザー登録をするとwebアプリで問題集が利用できるようになります。ここでは食品表示検定初級をはじめとした各コースの選択画面になります。"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="フードイグザム"/>
+<meta name="twitter:card" content="summary"/>
+<!-- SEO -->
+<meta name="description" content="食品業界資格支援のフードイグザムは、食品表示検定初級をはじめとした食品業界の資格合格を目指す人を応援するeラーニングのwebアプリです。ユーザー登録をするとwebアプリで問題集が利用できるようになります。ここでは食品表示検定初級をはじめとした各コースの選択画面になります。">
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="table-box" style="text-align: left;">
+    <h1>コース選択</h1>
+    {% if request.user.is_anonymous %}
+    <p style="padding-bottom: 1rem;">購入には、<a href="{% url 'corporate:signup' %}"><span class="link_color">会員登録</span></a> が必要になります。</p>
+    {% endif %}
+    <div class="course_section_inner">
+        <div class="course_cat">
+            <ul class="course_wrap">
+                <li class="course_list">
+                    <a href="{{ jrfoodadv_redirect_url }}">
+                        <h3 class="course_title">食品表示検定・初級</h3>
+                        <div class="course_img">
+                            <img src="{% static 'images/brussels_sprouts.jpg' %}" alt="">
+                        </div>
+                        <div class="course_desc">全{{ count_jrfoodadv }}問を用意しました。</br>最新の表示法に対応しています。</div>
+                    </a>
+                </li>
+                {% comment %}
+                <li class="course_list">
+                    <a href="{{ foodadv_redirect_url }}">
+                        <h3 class="course_title">食品表示検定・中級</h3>
+                        <div class="course_img">
+                            <img src="{% static 'images/apple.jpg' %}" alt="">
+                        </div>
+                        <div class="course_desc">全{{ count_foodadv }}問を用意しました。</br>最新の表示法に対応しています。</div>
+                    </a>
+                </li>
+                {% endcomment %}
+            </ul>
+        </div>
+    </div>
+    <br>
+    <a href="/"><i class="fa fa-angle-left"></i> トップページへ戻る</a>
+</div>
+{% endblock %}

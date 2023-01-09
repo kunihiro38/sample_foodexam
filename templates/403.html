@@ -1,0 +1,38 @@
+<meta name="viewport" content="width=device-width">
+<style type="text/css">
+    html, body{
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        text-align: center;
+    }
+    .error_content {
+        margin-top: 40px;
+    }
+    @media (max-width: 768px) {
+        h1{
+            font-size: 28px;;
+        }
+        p{
+            font-size: 16px;
+        }
+    }
+</style>
+<div class="error_content">
+    <h1>Forbidden（403）</h1>
+    <p>You are not allowed to access this address.</p>
+</div>
+<script type="text/javascript">
+    function gototop(){
+        var pth = location.pathname;
+        if(pth == "/"){
+            // pass
+        }
+        else{
+            location.href = "/";
+        }
+    }
+    setTimeout(gototop, 5000);
+</script>

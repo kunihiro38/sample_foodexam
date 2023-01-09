@@ -1,0 +1,12 @@
+<div class="select_answer">
+    {% if question.question_type == 'surround' %}
+    <!-- 1.surround専用フォーム -->
+    {% for radio in form.select_answer %}
+    {{ radio.tag|linebreaks }}
+    <div class="choice_label">{{ radio.choice_label|linebreaksbr }}</div>
+    {% endfor %}
+    {% else %}
+    <!-- 通常の選択form -->
+    {{ form.select_answer }}
+    {% endif %}
+</div>

@@ -1,0 +1,19 @@
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}お知らせ一覧{% endblock %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block head %}
+<!-- SEO -->
+<meta name="description" content="食品業界資格支援のフードイグザムのお知らせ一覧です。">
+{% endblock %}
+
+{% block content %}
+
+<div class="table-box info_list_box">
+    <h1>お知らせ一覧</h1>
+    {% include 'corporate/_include/_list.html' %}
+</div>
+{% endblock %}

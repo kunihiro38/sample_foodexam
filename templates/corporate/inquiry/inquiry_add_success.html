@@ -1,0 +1,17 @@
+<!-- 問い合わせ送信成功 -->
+
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}問い合わせ送信成功{% endblock %}
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<div class="table-box" style="text-align: left;">
+<p>送信が完了しました。</p>
+<p>追って管理人よりご連絡を差し上げます。</p>
+<br>
+<div class="back">
+    <a href="{% url 'corporate:index' %}"><i class="fa fa-chevron-left"></i> トップページに戻る</a>
+</div>
+</div>
+{% endblock %}

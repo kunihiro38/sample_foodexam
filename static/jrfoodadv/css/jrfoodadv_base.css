@@ -1,0 +1,941 @@
+/* jrfoodadvアプリ専用のCSS */
+
+
+/* ----------ヘッダーStyle---------- */
+.header{
+    /* ヘッダー固定するかしないか */
+    /* position: fixed; */
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    background-color:#2f3636;
+    height: 4.3rem;
+}
+.header_bg{
+    position: relative;
+    z-index: 2;
+    padding: 0 2rem;
+}
+.header_log a{
+    display: block;
+}
+.course{
+    margin-left: auto;
+    margin-right: auto;
+}
+.course span{
+    font-size: 14px;
+    font-weight: bold;
+}
+.course span.jrfoodadv_color{
+    color:rgba(215, 241, 218, 0.998);
+}
+.course span.foodadv_color{
+    color:rgba(241, 215, 229, 0.998);
+}
+.header_cat{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.header_cat input,
+.header_cat label{
+    display: none;
+}
+.header_navi_list{
+    display: flex;
+    align-items: center;
+}
+.header_navi .fa{
+    color:#d0d3d6;
+}
+.header_navi_item span{
+    position: relative;
+    font-weight: bold;
+    color:#d0d3d6;
+}
+.header_navi a{
+    text-decoration: none;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+/* ----------ヘッダーStyle---------- */
+
+
+/* ----------練習モードのヘッダーStyle---------- */
+.blue_header{
+    background-color: #00287a;
+}
+.practice_header_cat p{
+    color:#d0d3d6;
+    font-weight: bold;
+}
+.practice_header_cat{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    height: 4.3rem;
+}
+.practice_header{
+    height: 2.5rem;
+    position: relative;
+}
+/* ----------練習モードのヘッダーStyle---------- */
+
+
+/* ----------模擬試験のヘッダーStyle---------- */
+.red_header{
+    background-color: #a70032;
+}
+.practice_test_header{
+    height: 3rem;
+    position: relative;
+}
+.time_left{
+    position: absolute;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    font-size: 1.4rem;
+}
+.time_left_details{
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+.finish_practice_test{
+    position: absolute;
+    color: #fff;
+    top: 50%;
+    right: 0%;
+    transform: translateY(-50%) translateX(-50%);
+    font-size: 1.2rem;
+}
+/* ----------模擬試験のヘッダーStyle---------- */
+
+
+/* ----------ページング---------- */
+.paging{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.current_page{
+    border-bottom: 1px solid#000;
+}
+.paging .paging-display{
+    visibility: hidden;
+}
+/* ----------ページング---------- */
+
+
+/* コンテンツラッパー */
+.content_wrapper{
+    margin: 4rem 0;
+}
+/* コンテンツラッパー */
+
+
+/* ----------メインコンテンツ：練習モードと模擬試験---------- */
+.record_navi,
+.navi{
+    display: flex;
+    justify-content: center;
+}
+.record_navi span,
+.navi span{
+    padding: 0 2rem;
+    white-space: nowrap;
+}
+.bold,
+.navi .bold{
+    font-weight: bold;
+}
+.background{
+    background-color: #f4f5f6;
+    padding: 1.5rem 2rem 1.3rem;
+    border-top: .1rem solid #dee2e6;
+    border-right: .1rem solid #dee2e6;
+    border-left: .1rem solid #dee2e6;
+    border-bottom: .1rem solid #f4f5f6;
+    border-top-right-radius: .5rem;
+    border-top-left-radius: .5rem;
+}
+/* ----------メインコンテンツ：練習モードと模擬試験---------- */
+
+
+/* ----------履歴---------- */
+.record_box h1{
+    text-align: center;
+    font-weight: bold;
+    margin: 2rem;
+}
+.record_navi_background{
+    padding: 1.5rem 2rem 1.3rem;
+    border-top: .1rem solid #dee2e6;
+    border-right: .1rem solid #dee2e6;
+    border-left: .1rem solid #dee2e6;
+    border-bottom: .1rem solid #fff;
+    border-top-right-radius: .5rem;
+    border-top-left-radius: .5rem;
+}
+.record_content{
+    border-top: .1rem solid #dee2e6;
+    max-width: 132rem;;
+    margin: 10rem auto;
+    text-align: left;
+}
+/* ----------履歴---------- */
+
+
+/* ----------プロフィール---------- */
+.table-box.profile-table table{
+    margin-top: 0;
+}
+.table-box.profile-table p{
+    text-align: left;
+}
+/* ----------プロフィール---------- */
+
+
+/* ----------メインコンテンツ---------- */
+.select-box-bg{
+    background-color: #f4f5f6;
+    border-top: .1rem solid #dee2e6;
+    margin: 1rem 0;
+}
+.select-box{
+    padding: 0 1.6rem 3rem;
+    margin: 1rem auto 1rem;
+    width: 76rem;
+}
+.select_question,
+.select_target,
+.select_random{
+    box-sizing: content-box;
+    text-align: left;
+}
+.chapter li,
+.target li,
+.random li{
+    white-space: nowrap;
+    display: inline-flex;
+    box-sizing: content-box;
+}
+#id_unquestioned_and_mistakes{
+    margin: 1rem 0 0;
+}
+.answers{
+    padding: .25rem .5rem;
+    border-radius: .3rem;
+}
+.select_answers{
+    margin: 0 0 3rem;
+}
+.small{
+    font-size: 1.3rem;
+    opacity: .6;
+}
+/* ----------メインコンテンツ---------- */
+
+
+/* ----------練習モード---------- */
+.practice_content{
+    max-width: 114rem;
+    margin: 0 auto;
+    text-align: left;
+}
+.record_content,
+.practice_result_content{
+    max-width: 132rem;
+    margin: 1rem auto;
+    text-align: left;
+}
+.practice_content .top_wrapper{
+    padding: 1.5rem 1rem;
+}
+.practice_content .top_wrapper ul li:first-child{
+    font-size: 1.4rem;
+}
+.practice_content .record_box{
+    background-color: #f4f5f6;
+    padding: .8rem 1.6rem;
+    border-radius: .3rem;
+    margin: .5rem 0;
+}
+.practice_content .record_box ul{
+    font-size: 1.4rem;
+    margin: -.5rem 0;
+}
+.practice_content .top_wrapper ul li:first-child,
+.practice_content .record_box ul li:first-child{
+    margin-right: 1rem;
+}
+.practice_content .top_wrapper ul li,
+.practice_content .record_box ul li{
+    display: inline-block;
+}
+.practice_content .record_box ul li{
+    color:#697679;
+    margin: 0 .5rem;
+}
+.gray_color{
+    color:rgba(29, 23, 23, 0.7);
+}
+.red_color{
+    color:#f00;
+}
+.blue_color{
+    color:#00f;
+}
+.white_color{
+    color: #fff;
+}
+.fa-chevron-right{
+    padding: .4rem;
+}
+.edit:hover{
+    background-color:#eee;
+    transition: .3s;
+}
+.practice_content .question_title{
+    margin: 2rem 0 0 0;
+}
+.practice_content .sub_question_title{
+    margin: 1.5rem 0 0 0;
+}
+.practice_content .resize_img_for_mark{
+    width: auto;
+    max-height: 15rem;
+}
+.practice_content .resize_img_for_label{
+    width: auto;
+    max-height: 30rem;
+    margin: 2rem 0 0;
+}
+.practice_content .select_answer{
+    margin: 0 0 4rem;
+}
+.practice_content .select_answer div.choice_label{
+    text-align: center;
+    border: .1rem solid #000;
+    width: max-content;
+    padding: 1rem 2rem;
+    margin: 1rem 0 2rem;
+}
+.practice_content .select_answer ul{
+    margin: 1rem 0;
+}
+.practice_content .details{
+    padding: 4rem 1rem;
+}
+.practice_content .paging_box button{
+    margin-right: 2rem;
+}
+.practice_content .confirm_box button.pre-back,
+.practice_content .confirm_box button.review,
+.practice_content .paging_box button{
+    background-color: #00c6e1bf;
+    box-shadow: 0rem 0rem 0rem .1rem #00c6e1bf;
+}
+summary{
+    height: 3.2rem;
+    width: 9rem;
+    background-color:#6d6d6de8;
+    color: #fff;
+    cursor: pointer;
+    border-radius: .3rem;
+    text-align: center;
+    padding: .4rem 0;
+}
+summary:hover{
+    opacity: .6;
+    transition: .3s;
+}
+details ul{
+    border: .2rem solid #f4f5f6;
+    border-radius: .3rem;
+    padding: 1rem 1.5rem 2rem;
+    margin: 1rem 0;
+}
+.strong{
+    font-weight: bold;
+}
+.like_skyblue{
+    color:#00c6e1bf;
+}
+.info_box{
+    margin-top: 5rem;
+}
+.result_info_box{
+    margin: 1.5rem 0 2.5rem 0;
+}
+.info_box button{
+    background-color: #fff;
+    color:#333;
+    box-shadow: 0rem 0rem 0rem .1rem #333;
+}
+.info_box button:first-child{
+    margin-right: 2rem;
+}
+.info_box .memo_is_true{
+    background-color: #f00;
+    color: #fff;
+}
+.info_box .favorite_is_true{
+    background-color:#00f;
+    color: #fff;
+}
+.info_box .later_is_true{
+    border: 0.3rem solid #f00;
+    box-shadow: 0 0 0 0;
+}
+
+
+/* ----------練習モード/メモ---------- */
+.popup{
+    position: fixed;
+    box-sizing: border-box;
+    margin: 0 auto;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+}
+.popup.is-show{
+    opacity: 1;
+    visibility: visible;
+}
+.popup-inner{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+    z-index: 2;
+    border-radius: .3rem;
+    text-align: center;
+}
+.close-btn{
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+.close-btn .close-icon{
+    font-size: 2.1rem;
+    position: relative;
+    width: 1.4em;
+    height: 1.4em;
+}
+.close-btn .close-icon::before{
+    position: absolute;
+    top: .2em;
+    left: .6em;
+    width: .2em;
+    height: 1em;
+    content: "";
+    background: #aaa;
+    transform: rotate(45deg);
+}
+.close-btn .close-icon::after{
+    position: absolute;
+    top: .6em;
+    left: .2em;
+    width: 1em;
+    height: .2em;
+    content: "";
+    background: #aaa;
+    transform: rotate(228deg)
+}
+.black-background{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .8);
+    z-index: 1;
+    cursor: pointer;
+}
+.popup .modal-container button{
+    white-space: nowrap;
+}
+.invalid_button{
+    background-color: #c1b0b0;
+    box-shadow: 0rem 0rem 0rem 0.1rem #c1b0b0;
+    cursor: not-allowed;
+}
+/* ----------練習モード/メモ---------- */
+/* ----------練習モード---------- */
+
+
+/* ----------練習モード終了確認画面---------- */
+.record_content .result_msg,
+.practice_result_content h2,
+.practice_result_content .result_msg,
+.practice_content h2,
+.practice_content h3,
+.practice_content .confirm_box{
+    text-align: center;
+}
+.practice_content .confirm_box button,
+.practice_content .confirm_box .confirm_answer_status{
+    margin: 3rem 3rem 0 3rem;
+    width: 23rem;
+}
+.practice_content .confirm_box .confirm_answer_status{
+    display: inline-block;
+}
+.practice_content .confirm_box .confirm_answer_status .info_answer_status{
+    padding: 0.8rem 6.2rem;
+}
+.result_content,
+.unanswered_content{
+    margin-top: 3rem;
+}
+
+.result_content .table-box,
+.unanswered_content .table-box{
+    width: 100%;
+}
+.result_content .table-box tr th,
+.result_content .table-box tr td,
+.unanswered_content .table-box tr th,
+.unanswered_content .table-box tr td{
+    display: table-cell;
+}
+/* お気に入り */
+.result_content .table-box tr th.memo,
+.result_content .table-box tr td.memo,
+.result_content .table-box tr th.favorite,
+.result_content .table-box tr td.favorite{
+    padding: 0;
+}
+/* ↓問題IDの桁数に寄ってwidthがズレるのを防ぐ */
+.record_content .result_content .table-box tbody tr td:nth-child(2),
+.practice_result_content .result_content .table-box tbody tr td:nth-child(3){
+    width:10rem;
+}
+.record_content .result_msg,
+.practice_result_content .result_msg{
+    padding: 3rem 0 0;
+}
+.record_content .result_msg span,
+.practice_result_content .result_msg span{
+    color: #00c6e1bf;
+    font-weight: bold;
+}
+/* ----------練習モード終了確認画面---------- */
+
+
+/* ----------模擬試験の解答状況---------- */
+.info_answer_status{
+    background-color: #6d6d6de8;
+    border-radius: .3rem;
+    text-align: center;
+    padding: 0.8rem 1.2rem;
+}
+.answer_status,
+.answer_status_back{
+    max-width: 114rem;
+    margin: 0 auto;
+    text-align: left;
+    display: flex;
+    padding: 2rem;
+}
+.answer_status_container{
+    background: rgba(241, 215, 220, 0.998);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5rem 2rem;
+}
+.answer_status_container .answer_status_item,
+.answer_status_description .answer_status_item{
+    text-align: center;
+    border: 0.1rem solid #000;
+    height: 3.4rem;
+    width: 7.5rem;
+    padding: .5rem 1rem;
+}
+.answer_status_container a,
+.answer_status_description .answer_status_item{
+    margin: 1rem;
+}
+.answer_status_description{
+    padding: 1rem 0;
+}
+.answer_status_description p{
+    text-align: center;
+}
+.answer_status .unanswered{
+    background-color: #fff;
+}
+.answer_status .answered{
+    background-color: #b4fcb2b3;
+}
+.answer_status .later{
+    border: 0.3rem solid #f00;
+}
+.answer_status .answering{
+    background-color: #ffd100;
+}
+/* ----------模擬試験の解答状況---------- */
+
+
+/* ----------演習結果画面---------- */
+.practice_result{
+    position: relative;
+    border-radius: 3.2rem;
+    height: 4rem;
+    text-align: center;
+    font-weight: bold;
+}
+.practice_result p{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    letter-spacing: 1rem;
+}
+.background_color_gray{
+    background-color: rgba(29, 23, 23, 0.7);
+}
+.background_color_red{
+    background-color: #f00;
+}
+.background_color_blue{
+    background-color: #00f;
+}
+.result_box{
+    display: flex;
+    justify-content: space-between;
+}
+.result_box form{
+    padding: 1rem 0;
+} 
+/* ----------演習結果画面---------- */
+
+
+/* ----------検索画面---------- */
+.table-box.edit-profile-table,
+.table-box.profile-table,
+.table-box.setting-box,
+.table-box.search-table-box{
+    padding: 3rem 1.6rem 0rem;
+}
+.table-box.search-table-box td{
+    padding: .5rem;
+}
+/* ----------検索画面---------- */
+
+
+/* ----------学習履歴削除確認画面---------- */
+.warning{
+    background-color:#ffff80;
+    border: .1rem solid #E5A500;
+    color:#CC7600;
+    padding: 1rem 2rem;
+    margin: 2rem auto;
+    max-width: 60rem;
+}
+.warning-orange-color{
+    color:#CC7600;
+}
+.clearly{
+    background: #000;
+    color: #fff;
+    padding: .3rem .7rem;
+    border-radius: .5rem;
+}
+.del-record{
+    width: 60rem;
+}
+.del-record li{
+    text-align: -webkit-center;
+}
+.del-record p{
+    text-align: left;
+}
+/* ----------学習履歴削除確認画面---------- */
+
+
+/* ----------無料プラン---------- */
+.freeplan{
+    background-color:#333333;
+    border: .1rem solid #E5A500;
+    color:#d8fa3b;
+    padding: 1rem 2rem;
+    margin: 2rem auto;
+    max-width: 60rem;
+}
+/* ----------無料プラン---------- */
+
+
+/* レスポンシブ */
+@media screen and (max-width: 114rem) {
+    .record_content,
+    .practice_result_content,
+    .practice_content{
+        max-width: 96rem;
+    }
+}
+@media screen and (max-width: 992px) {
+    .table-box.search-table-box,
+    .record_content,
+    .practice_result_content,
+    .practice_content{
+        max-width: 72rem;
+    }
+}
+@media screen and (max-width: 768px) {
+    /* ヘッダー */
+    .header{
+        height: 5.1rem;
+    }
+    .blue_header,
+    .red_header{
+        height: 4.3rem;
+    }
+    .practice_header{
+        height: 2.5rem;
+    }
+    .practice_test_header{
+        height: 3rem;
+    }
+    .header_bg{
+        padding: 1rem;
+    }
+    .header_bg a{
+        font-size: 1.2rem;
+    }
+    .course{
+        margin-right: 4rem;
+    }
+    .course span{
+        font-size: 12px;
+    }
+    /* ヘッダー */
+
+
+    /* ヘッダーハンバーガーメニュー */
+    .header_cat input,
+    .header_cat label{
+        display: block;
+    }
+    .header_cat input{
+        display: none;
+    }
+    .header_cat label{
+        position: absolute;
+        right: 1rem;
+        clear: both;
+    }
+    span.hamburger_icon{
+        display: inline-block;
+        width: 2.5rem;
+        height: 1.5rem;
+    }
+    span.hamburger_icon i{
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color:#d0d3d6;
+        display: block;
+        transition: all .3s ease-in-out;
+    }
+    span.hamburger_icon i:nth-child(1){
+        top: 0;
+    }
+    span.hamburger_icon i:nth-child(2){
+        margin: auto;
+        top:0;
+        bottom: 0;
+    }
+    span.hamburger_icon i:nth-child(3){
+        bottom: 0;
+    }
+    .header_cat input:checked + label span.hamburger_icon i:nth-child(1){
+        margin: auto;
+        transform: rotate(45deg);
+        right: 0;
+        bottom: 0;
+        left: 0;
+        top: 0;
+    }
+    .header_cat input:checked + label span.hamburger_icon i:nth-child(2){
+        transform: rotateX(90deg);
+        top: 0;
+        bottom: 0;
+    }
+    .header_cat input:checked + label span.hamburger_icon i:nth-child(3){
+        margin: auto;
+        transform: rotate(-45deg);
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .header_cat input:checked ~ .header_navi{
+        z-index: 99;
+        opacity: 1;
+        transform: translateX(0);
+        transition: all .2s ease-out;
+    }
+    .header_navi{
+        position: fixed;
+        opacity: 0;
+        background-color: rgba(255, 255, 255, .7);
+        top: 5rem;
+        right: 0;
+        transform: translateX(100%);
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        /* 下の3つをまとめると→transition: all .2s ease-out; */
+        /* transition-property: all;
+        transition-duration: .2s;
+        transition-timing-function: ease-out; */
+    }
+    .header_navi_wrap{
+        width: 100%;
+        background-color: rgba(255,255,255,.5);
+        position: absolute;
+        right: 0;
+        top: 0rem;
+        bottom: 0;
+        transition-duration: 1s;
+        transition-property: right;
+        overflow-y: scroll;
+    }
+    .header_cat input:checked ~ .header_navi .header_navi_wrap{
+        right: 0;
+    }
+    .header_navi_list{
+        margin: 0;
+        display: block;
+        justify-content: inherit;
+    }
+    .header_navi_item{
+        border-bottom: .1rem solid #2f3636;
+    }
+    .header_navi_item a{
+        padding: 3rem 5rem;
+        color: #fff;
+        font-size: 2.4rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        font-weight: 700;
+        line-height: 1;
+        transition: background-color 5s ease-in-out;
+    }
+    .header_navi_item .fa{
+        color:#2f3636;
+    }
+    .header_navi_item span{
+        color: #2f3636;
+    }
+
+
+    /* テーブルレスポンシブ */
+    .table-box{
+        width: 100%;
+    }
+    .result_content .table-box tr th,
+    .result_content .table-box tr td,
+    .unanswered_content .table-box tr th,
+    .unanswered_content .table-box tr td{
+        padding: 1rem;
+        display: block;
+    }
+    /* テーブルレスポンシブ */
+
+
+    /* プロフィール */
+    .table-box.edit-profile-table{
+        width: auto;
+    }
+    /* プロフィール */
+
+
+    /* ----------メインコンテンツ---------- */
+    .record_content,
+    .practice_result_content,
+    .practice_content{
+        padding: 1.5rem;
+    }
+    .select-box{
+        width: 100%;
+    }
+    .chapter li,
+    .target li{
+        display: block;
+    }
+    /* ----------メインコンテンツ---------- */
+
+    .practice_content .paging_box{
+        display: flex;
+        justify-content: space-between;
+    }
+    .practice_content .info_box{
+        display: flex;
+    }
+    .practice_content info_answer_box{
+        display: inline;
+    }
+    .practice_content .paging_box button{
+        width: auto;
+        margin-right: 0rem;
+    }
+    .practice_content .info_box button{
+        width: auto;
+    }
+    .practice_content .confirm_box .button_layout{
+        display: block;
+    }
+    .del-record{
+        text-align: left;
+    }
+    /* ----------模擬試験の解答状況---------- */
+    .answer_status_container,
+    .answer_status_description{
+        padding: 0;
+    }
+    .answer_status_container .answer_status_item,
+    .answer_status_description .answer_status_item{
+        width: 60px;
+    }
+    /* ----------模擬試験の解答状況---------- */
+
+    /* ----------練習モード/メモ---------- */
+    .popup-inner{
+        width: 90%;
+    }
+    /* ----------練習モード/メモ---------- */
+
+    /* ----------演習結果---------- */
+    .result_box{
+        display: block;
+    }
+    .result_content .table-box tr th.memo,
+    .result_content .table-box tr td.memo,
+    .result_content .table-box tr th.favorite,
+    .result_content .table-box tr td.favorite{
+        padding: 0 1rem;
+    }
+    /* ----------演習結果---------- */
+
+}
+/* レスポンシブ */

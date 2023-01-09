@@ -1,0 +1,62 @@
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}{{ information.title }} {% if information.title|length < 50 %}| フードイグザム{% endif %}{% endblock %}
+{% load static %}
+
+{% block head %}
+{% if information.category == model_category.COLUMN %}
+{% include 'corporate/_include/_google_adsense.html' %}
+{% endif %}
+<!-- OGP -->
+<meta property="og:title" content="{{ information.title }} {% if information.title|length < 50 %}| フードイグザム{% endif %}"/>
+<meta property="og:url" content="{{ site_url }}{{ request.path }}"/>
+<meta property="og:image" content="{{ site_url }}{{ MEDIA_URL }}{{ information.eyecatch }}"/>
+<meta property="og:description" content="{{ information.meta_description }}"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="フードイグザム"/>
+<meta name="twitter:card" content="summary"/>
+<!-- SEO -->
+<meta name="description" content="{{ information.meta_description }}">
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'corporate/css/info_individual.css' %}">
+{% endblock %}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<div class="info_content">
+    <h1 data-info-id="{{ information.id }}">{{ information.title }}</h1>
+    <span class="created_at"><i class="fa fa-clock-o contributor"></i><time datetime="{{ information.created_at|date:'Y-n-j H:i:s' }}" itemprop="”datepublished”"> {{ information.created_at|date:"Y-n-j" }}</time></span>
+    <span class="updated_at"><i class="fa fa-refresh contributor"></i><time datetime="{{ information.updated_at|date:'Y-n-j H:i:s' }}" itemprop="modified"> {{ information.updated_at|date:"Y-n-j" }}</time></span>
+    <div class="contributor"><i class="fa fa-user contributor"></i> 管理人</div>
+
+    {% include 'corporate/_include/_category_tag.html' %}
+
+    <img src="{{ MEDIA_URL }}{{ information.eyecatch }}">
+
+    <div class="desc">{{ information.description|safe }}</div>
+
+    {% if information.next_page and information.category == model_category.COLUMN %}
+    <p class="next_page" data-next-info-id="{{ information.next_page.id }}"><a href="{% url 'corporate:column_individual' information.next_page.id %}"><i class="fa fa-chevron-left"></i> {{ information.next_page.title }}</a></p>
+    {% elif information.next_page and information.category != model_category.COLUMN %}
+    <p class="next_page" data-next-info-id="{{ information.next_page.id }}"><a href="{% url 'corporate:info_individual' information.next_page.id %}"><i class="fa fa-chevron-left"></i> {{ information.next_page.title }}</a></p>
+    {% else %}
+    {% endif %}
+
+    {% if information.prev_page and information.category == model_category.COLUMN %}
+    <p class="prev_page" data-prev-info-id="{{ information.prev_page.id }}"><a href="{% url 'corporate:column_individual' information.prev_page.id %}">{{ information.prev_page.title }} <i class="fa fa-chevron-right"></i></a></p>
+    {% elif information.prev_page and information.category != model_category.COLUMN %}
+    <p class="prev_page" data-prev-info-id="{{ information.prev_page.id }}"><a href="{% url 'corporate:info_individual' information.prev_page.id %}">{{ information.prev_page.title }} <i class="fa fa-chevron-right"></i></a></p>
+    {% else %}
+    {% endif %}
+
+    <div class="back">
+        {% if information.category == model_category.COLUMN %}
+        <a href="{% url 'corporate:column' %}"><i class="fa fa-chevron-left"></i> 学習コラム一覧に戻る</a>
+        {% elif information.category != model_category.COLUMN %}
+        <a href="{% url 'corporate:info_list' %}"><i class="fa fa-chevron-left"></i> お知らせ一覧に戻る</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

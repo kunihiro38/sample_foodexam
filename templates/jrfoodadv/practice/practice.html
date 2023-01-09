@@ -1,0 +1,100 @@
+{% extends 'jrfoodadv/base/jrfoodadv_practice_base.html' %}
+{% block page_title %}練習モード{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% load static %}
+{% load extra_tag %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+
+    <div class="practice_content">
+
+        {% for question in question_page %}
+        <div class="top_wrapper">
+            <ul>
+                <li>問題ID</li>
+                <li>{{ question.question_id }}</li>
+            </ul>
+            <div class="record_box">
+                <ul>
+                    <li>履歴</li>
+                    <li>{% return_fontawesome question.record.first_answer %}</li>
+                    <li>{% return_fontawesome question.record.second_answer %}</li>
+                    <li>{% return_fontawesome question.record.third_answer %}</li>
+                    <li>{% return_fontawesome question.record.fourth_answer %}</li>
+                    <li>{% return_fontawesome question.record.fifth_answer %}</li>
+                </ul>
+                <ul>
+                    <li>前回出題日時</li>
+                    <li>{{ question.record.saved_at|date:"Y年n月j日(D) H時i分"|default:"&#x2796;" }}</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 問題文 -->
+        {% include 'jrfoodadv/_include/_question_content.html'%}
+        <!-- 問題文 -->
+
+        <!-- 解答選択 -->
+        {% include 'jrfoodadv/_include/_answer_selection.html'%}
+        <!-- 解答選択 -->
+
+        <div class="paging_box">
+            <!-- practice_finish_confirmから飛んできた時は「もどる」ボタンを表示させない -->
+            {% if not practice_finish_confirm_session %}
+            {% if question_page.has_previous %}
+            <a href="?page={{ question_page.previous_page_number }}">
+                <button type="button"><i class="fa fa-arrow-left" style="color:#fff;"></i> もどる</button>
+            </a>
+            {% endif %}
+            {% endif %}
+            {% if question_page.has_next %}
+            <button type="submit">すすむ <i class="fa fa-arrow-right" style="color:#fff;"></i></button>
+            {% else %}
+            <button type="submit">すすむ <i class="fa fa-arrow-right" style="color:#fff;"></i></button>
+            <!-- <a href="{% url 'jrfoodadv:practice_finish_confirm' %}">すすむ <i class="fa fa-arrow-right" style="color:#fff;"></i></a> -->
+            {% endif %}
+        </div>
+
+        <details class="details">
+            <summary>正解</summary>
+            <ul>
+                <li class="strong">正解</li>
+                <li class="like_skyblue strong correct_answer" id="{{ question.correct_answer }}">
+                    {% if question.correct_answer == 'choice_a'%}
+                    {{ question.choice_a }}
+                    {% elif question.correct_answer == 'choice_b' %}
+                    {{ question.choice_b }}
+                    {% elif question.correct_answer == 'choice_c' %}
+                    {{ question.choice_c }}
+                    {% elif question.correct_answer == 'choice_d' %}
+                    {{ question.choice_d }}
+                    {% else %}
+                    {% endif %}
+                </li>
+                <li class="strong">解説</li>
+                <li>{{ question.commentary|linebreaksbr }}</li>
+            </ul>
+        </details>
+
+        <!-- メモとお気に入り -->
+        {% include 'jrfoodadv/_include/_memo_and_favorite.html'%}
+        <!-- メモとお気に入り -->
+
+    </div>
+</form>
+
+<!-- メモ/モーダルダイアログ -->
+{% include 'jrfoodadv/_include/_modal_memo.html'%}
+<!-- メモ/モーダルダイアログ -->
+
+{% endfor %}
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/jrfoodadv/practice.js' %}"></script>
+{% endblock %}

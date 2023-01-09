@@ -1,0 +1,75 @@
+{% comment %}
+jrfoodadv_practice_test.html -> 初級食品表示診断士・模擬試験専用
+{% endcomment %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="noindex">
+    <title>{% block page_title %}{% endblock %}</title>
+    <!-- google search console -->
+    <meta name="google-site-verification" content="1WsAu8bapyXxBhXpeSc-jsZkJicd1Z971WMXubzv0uA">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H063860R15"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-H063860R15');
+    </script>
+
+    {# --- favicon --- #}
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    {# --- css --- #}
+    <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'jrfoodadv/css/jrfoodadv_base.css' %}">
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <div class="header red_header">
+        <header>
+            <div class="practice_header_cat">
+                <p>食品表示検定・初級 模擬試験</p>
+                <p>
+                    {% if 'practice_test_finish_confirm' in request.get_full_path %}
+                    <!-- practice_finish_confirmページには表示させない -->
+                    {% elif 'practice_test/answer_status' in request.get_full_path %}
+                    <!-- practice_test/answer_statusページには表示させない -->
+                    {% else %}
+                    {{ question_page.number }} / {{ question_page.paginator.num_pages }}
+                    {% endif %}
+                </p>
+            </div>
+        </header>
+    </div>
+    <div class="header practice_test_header">
+        <p class="time_left">残り時間　<span class="time_left_details" id="TimeLeft" data-time-left="{{ time_left }}"></span></p>
+        <p class="finish_practice_test"><a><i class="fa fa-times white_color" aria-hidden="true"></i> 中止</a></div>
+    </div>
+    <!-- ヘッダー -->
+
+
+    <!-- メインコンテンツ -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    <!-- メインコンテンツ -->
+
+
+
+    {# --- js ---#}
+    <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+    <!-- block extra_js -->
+    {% block extra_js %}{% endblock %}
+    <!-- endblock extra_js -->
+</body>
+
+
+</html>

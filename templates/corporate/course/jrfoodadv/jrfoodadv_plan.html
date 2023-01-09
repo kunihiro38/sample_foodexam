@@ -1,0 +1,79 @@
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}食品表示検定・初級のプラン選択{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+{% load humanize %}
+<div class="table-box">
+    <h1>食品表示検定・初級のプラン選択</h1>
+    {% if request.user.is_anonymous %}
+    <p>プラン利用には、<a href="{% url 'corporate:signup' %}"><span class="link_color">会員登録</span></a> が必要になります。</p>
+    <p class="free_trial"><a href="{% url 'corporate:signup' %}"><span class="free_trial link_color">まずは会員登録をして、無料プランを試してみる。</span></a></p>
+    {% else %}
+    <p>登録時は<a href="{% url 'jrfoodadv:index' %}"><span class="free_trial link_color">無料プラン</span></a>となっており、すぐに学習を開始できます。</p>
+    {% endif %}
+    <section>
+        <div class="plan_section_inner">
+            <div>
+                <ul class="plan_wrap">
+                    <li class="plan_list">
+                        <h2 class="plan_title">{{ monthly_plan_name }}</h2>
+                        <a href="{% url 'corporate:plan_monthly' %}">
+                            <div class="plan_box plan_box_jrfoodadv_color">
+                                <h3>{{ monthly_amount|intcomma:False }}円(税込)</h3>
+                                <ul>
+                                    <li><i class="fa fa-check jrfoodadv_color"></i> 練習モード解き放題</li>
+                                    <li><i class="fa fa-check jrfoodadv_color"></i> 模擬試験モード解き放題</li>
+                                    <li><i class="fa fa-check jrfoodadv_color"></i> <span class="bold">{{ monthly_usable_period }}日間</span>使い放題</li>
+                                </ul>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="plan_list">
+                        <h2 class="plan_title">{{ ten_days_plan_name }}</h2>
+                        <a href="{% url 'corporate:plan_10days' %}">
+                            <div class="plan_box plan_box_jrfoodadv_color">
+                                <h3>{{ ten_days_amount|intcomma:False }}円(税込)</h3>
+                                <ul>
+                                    <li><i class="fa fa-check jrfoodadv_color"></i> 練習モード解き放題</li>
+                                    <li><i class="fa fa-check jrfoodadv_color"></i> 模擬試験モード解き放題</li>
+                                    <li><i class="fa fa-check jrfoodadv_color"></i> <span class="bold">{{ ten_days_usable_period }}日間</span>使い放題</li>
+                                </ul>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="plan_list">
+                        <h2 class="plan_title">{{ tree_days_plane_name }}</h2>  
+                        <a href="{% url 'corporate:plan_3days' %}"> 
+                            <div class="plan_box plan_box_jrfoodadv_color">
+                                <h3>{{ three_days_amount|intcomma:False }}円(税込)</h3>
+                                <ul>
+                                    <li><i class="fa fa-check jrfoodadv_color"></i> 練習モード解き放題</li>
+                                    <li><i class="fa fa-check jrfoodadv_color"></i> 模擬試験モード解き放題</li>
+                                    <li><i class="fa fa-check jrfoodadv_color"></i> <span class="bold">3日間</span>使い放題</li>
+                                </ul>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    {% if not request.user.is_anonymous %}
+    <p class="free_trial"><a href="{% url 'jrfoodadv:index' %}"><span class="free_trial link_color">とりあえず無料で試してみる</span></a></p>
+    {% endif %}
+
+    <div class="back">
+        <a href="{% url 'corporate:course' %}"><i class="fa fa-chevron-left"></i> コース選択に戻る</a>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

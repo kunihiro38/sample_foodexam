@@ -1,0 +1,13 @@
+<div class="content_wrapper">
+    {% comment %}
+    <!-- <p> TODO:【学習カレンダー】</p>
+    <img src="http://placehold.jp/350x200.png" alt=""> -->
+    {% endcomment %}
+    <p>前回の演習：
+        {% if latest_record %}
+        {{ latest_record.saved_at|date:"Y年n月j日(D) H時i分"|default:"&#x2796;" }}
+        {% else %}
+        記録がありません
+        {% endif %}
+    </p>
+</div>

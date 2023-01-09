@@ -1,0 +1,274 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+v2.0 | 20110126
+License: none (public domain)
+*/
+
+/* リセットCSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+* {
+    box-sizing: border-box;
+    color: #333333;
+}
+/* リセットCSS */
+
+/* プロジェクト内での普遍のプロパティ */
+/* 全てのアプリで適用される */
+
+/* ----------マイスタイルcss---------- */
+/* https://coliss.com/articles/build-websites/operation/css/my-css-reset-by-ire.html */
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.6rem;
+    line-height: 1.4;
+    /* padding: 0.8rem; */
+}
+h1{
+    /* 28px */
+    padding: 1.4rem 0;
+    font-size: 2.8rem;
+}
+h2{
+    /* 24px */
+    font-size: 2.4rem;
+    font-weight: bold;
+    text-align: left;
+    padding: 3rem 0 2rem 0;
+}
+h3{
+    /* 18.72px */
+    font-size: 1.87rem;
+    font-weight: bold;
+}
+p{
+    /* 16px */
+    font-size: 1.6rem;
+}
+*{
+    font-family: inherit;
+    font-size:inherit;
+    line-height: inherit;
+    box-sizing: border-box;
+}
+*:before, *:after{
+    box-sizing: inherit;
+}
+a, a:visited{
+    color: inherit;
+}
+img{
+    max-width: 100%;
+    border-style: none;
+    vertical-align: bottom;
+}
+a, button{
+    cursor: pointer;
+}
+a, img{
+    text-decoration: none;
+}
+a:hover,
+button:hover{
+    opacity: .6;
+    transition: .3s;
+}
+table{
+    margin: 3rem 0;
+}
+ol{
+    list-style: decimal;
+    text-align: left;
+    padding: 1rem 0 1rem 2rem;
+}
+li{
+    padding: 1rem 0;
+}
+
+/* table/テーブル */
+table tr{
+    border: .1rem solid #ddd;
+}
+table tr th,
+table tr td{
+    padding: 1rem;
+    vertical-align: middle;
+}
+.table-box{
+    padding: 8rem 1.6rem;
+    margin: 0 auto;
+    width: 83rem;
+}
+.table-box table{
+    width: 100%;
+}
+.table-box th{
+    text-align: left;
+    background: #eee;
+    white-space: nowrap;
+}
+.table-box td{
+    text-align:left; 
+}
+.table-box h1{
+    text-align: center;
+    font-weight: bold;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    margin-bottom: 5rem;
+}
+/* table/テーブル */
+
+
+/* dl, td, dd */
+dl, td, dd{
+    display: block;
+}
+/* dl, td, dd */
+
+
+/* ボタン */
+button{
+    background: #ff8d26;
+    border-bottom: .1rem solid #FFFFFF;
+    border-left: .2rem solid #FFFFFF;
+    border-radius: 3.2rem;
+    border-right: .2rem solid #FFFFFF;
+    border-top: .2rem solid #FFFFFF;
+    box-shadow: 0rem 0rem 0rem .1rem #ff8d26;
+    color: #fff;
+    height: 4rem;
+    justify-content: center;
+    padding: 0 2rem;
+    text-align: center;
+}
+/* ボタン */
+
+/* input/入力フォーム */
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=number],
+textarea{
+    width: 100%;
+    box-sizing: border-box;
+    padding: .8rem;
+    border-radius: .3rem;
+    border: .2rem solid #ddd;
+}
+input[type=text]:-webkit-autofill::first-line,
+input[type=email]:-webkit-autofill::first-line,
+input[type=password]:-webkit-autofill::first-line,
+input[type=number]:-webkit-autofill::first-line,
+textarea:-webkit-autofill::first-line{
+    font-family: inherit;
+    font-size: 1.6rem;
+}
+/* input/入力フォーム */
+
+
+/* ----------単発カスタムマイスタイル---------- */
+.opacity{
+    opacity: .6;
+}
+/* ----------単発カスタムマイスタイル---------- */
+
+
+/* メインコンテンツ */
+.content{
+    box-sizing: border-box;
+    text-align: center;
+    width: 100%;
+}
+.footer{
+    margin-top: 3rem;
+}
+/* メインコンテンツ */
+
+
+/* エラーリスト */
+ul.errorlist {
+    margin: 0;
+    padding: 0;
+}
+.errorlist li{
+    border: .1rem solid #f00;
+    font-size: 1.2rem;
+    color: #f00;
+    background: rgba(255, 0, 0, .15);
+    list-style-position: inside;
+    display: block;
+    padding: 1rem;
+    text-align: left;
+    border-radius: .3rem;
+}
+/* エラーリスト */
+
+.symbol_color{
+    color: #ff8d26;
+}
+.link_color{
+    color: #3067B0;
+}
+.back{
+    padding: 2rem 0;
+    text-align: left;
+}
+
+@media screen and (max-width: 768px) {
+    button{
+        width: 100%;
+    }
+    /* テーブルレスポンシブ */
+    .table-box{
+        width: 100%;
+    }
+    .table-box tr th,
+    .table-box tr td{
+        display: block;
+    }
+    /* テーブルレスポンシブ */
+}

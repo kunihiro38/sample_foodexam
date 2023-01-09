@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "==3.2"
+pylint-django = "*"
+python-dotenv = "*"
+mysqlclient = "*"
+pillow = "*"
+pandas = "*"
+payjp = "*"
+python-memcached = "*"
+numpy = "*"
+gunicorn = "*"
+requests = "==2.27.1"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"

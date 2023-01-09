@@ -1,0 +1,88 @@
+<!-- プロフィール -->
+
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}プロフィール{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<div class="table-box profile-table">
+    <h1>プロフィール</h1>
+    <p>※プロフィールの編集ができます。</p>
+    <table>
+        <tr>
+            <th>アカウント名</th>
+            <td class="edit">
+                <a href="{% url 'corporate:edit_username' %}">
+                    <div>
+                    {{ user_info.username|truncatechars:16 }}<i class="fa fa-chevron-right fa-pull-right"></i>
+                    </div>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th>メールアドレス</th>
+            <td>
+                <div>{{ user_info.email }}</div>
+            </td>
+        </tr>
+        <tr>
+            <th>パスワード</th>
+            <td class="edit">
+                <a href="{% url 'corporate:change_password' %}">
+                    <div>
+                        ******<i class="fa fa-chevron-right fa-pull-right"></i></td>
+                    </div>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th>初級コース</th>
+            <td class="edit">
+                <a href="{% url 'corporate:jrfoodadv_plan' %}">
+                    <div>
+                        {{ user_info.payment_course }}<i class="fa fa-chevron-right fa-pull-right"></i>
+                    </div>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th>初級コース支払日</th>
+            <td>{{ user_info.paid_at|date:"Y年n月j日(D) H時i分" }}</td>
+        </tr>
+        <tr>
+            <th>初級コース有効期限</th>
+            <td>{{ user_info.expired_at|date:"Y年n月j日(D) H時i分" }}</td>
+        </tr>
+        {% comment %}
+        <!-- 中級コースが開校したらコメントアウトを解除する -->
+        <tr>
+            <th>中級コース</th>
+            <td class="edit">
+                <a href="{% url 'corporate:foodadv_plan' %}">
+                    <div>
+                        {{ user_info.foodadv_payment_course }}<i class="fa fa-chevron-right fa-pull-right"></i>
+                    </div>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th>中級コース支払日</th>
+            <td>{{ user_info.foodadv_paid_at|date:"Y年n月j日(D) H時i分" }}</td>
+        </tr>
+        <tr>
+            <th>中級コース有効期限</th>
+            <td>{{ user_info.foodadv_expired_at|date:"Y年n月j日(D) H時i分" }}</td>
+        </tr>
+        {% endcomment %}
+    </table>
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit">ログアウトする</button>
+    </form>
+    <div class="back">
+        <a href="{% url 'corporate:index' %}"><i class="fa fa-chevron-left"></i> トップページに戻る</a>
+    </div>
+</div>
+{% endblock %}

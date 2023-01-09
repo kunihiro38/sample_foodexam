@@ -1,0 +1,130 @@
+{% extends 'jrfoodadv/base/jrfoodadv_base.html' %}
+{% block page_title %}演習結果個別{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% load static %}
+{% load extra_tag %}
+
+{% block content %}
+<div class="practice_content">
+    <div class="back">
+        <a href="{% url 'jrfoodadv:practice_result' %}"><i class="fa fa-chevron-left"></i> 前のページに戻る</a>
+    </div>
+    <div class="practice_result {% if question.current_answer == model_answer_result.UNANSWERED %}
+                background_color_gray
+                {% elif question.current_answer == model_answer_result.INCORRECT %}
+                background_color_red
+                {% elif question.current_answer == model_answer_result.CORRECT %}
+                background_color_blue
+                {% else %}
+                {% endif %}">
+        <p>
+            {% if question.current_answer == model_answer_result.UNANSWERED %}
+            {{ question.current_answer_as_str }}
+            {% elif question.current_answer == model_answer_result.INCORRECT %}
+            {{ question.current_answer_as_str }}
+            {% elif question.current_answer == model_answer_result.CORRECT %}
+            {{ question.current_answer_as_str }}
+            {% else %}
+            {% endif %}
+        </p>
+    </div>
+    <div class="top_wrapper">
+        <ul>
+            <li>問題ID</li>
+            <li>{{ question.question_id }}</li>
+        </ul>
+        <ul>
+            <li>分野</li>
+            <li>{{ question.textbook_chapter_as_str }}</li>
+        </ul>
+        <div class="record_box">
+            <ul>
+                <li>履歴</li>
+                <li>{% return_fontawesome question.first_answer %}</li>
+                <li>{% return_fontawesome question.second_answer %}</li>
+                <li>{% return_fontawesome question.third_answer %}</li>
+                <li>{% return_fontawesome question.fourth_answer %}</li>
+                <li>{% return_fontawesome question.fifth_answer %}</li>
+            </ul>
+            <ul>
+                <li>最新解答日時</li>
+                <li>{{ question.saved_at|date:"Y年n月j日(D) H時i分"|default:"&#x2796;" }}</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info_box result_info_box">
+        <button type="button" class="{% if question.memo %}memo_is_true{% endif %}" id="memo" data-question-id="{{ question.question_id }}">
+            <i id="i_memo" class="fa fa-pencil {% if question.memo %}memo_is_true{% endif %}"></i> メモ</button>
+        <button type="button" class="{% if question.favorite %}favorite_is_true{% endif %}" id="favorite" data-question-id="{{ question.question_id }}">
+            <i id="i_favorite" class="fa fa-star-o {% if question.favorite %}favorite_is_true{% endif %}"></i> お気に入り</button>
+    </div>
+
+    {% include 'jrfoodadv/_include/_question_content.html'%}
+
+    <!-- 解答選択 -->
+    <div class="select_answer current_choice" data_current_choice="{{ question.current_choice }}">
+        {% if question.question_type == 'surround' %}
+        <!-- TODO: surroundは直したいが、csvがsurroundで処理する方がわかり易いのでこのまま -->
+        {% for radio in form.select_answer %}
+        {{ radio.tag|linebreaks }}
+        <div class="choice_label">{{ radio.choice_label|linebreaksbr }}</div>
+        {% endfor %}
+        {% else %}
+        {{ form.select_answer }}
+        {% endif %}
+    </div>
+
+
+
+    <details open>
+        <summary>正解</summary>
+        <ul>
+            <li class="strong">正解</li>
+            <li class="like_skyblue strong correct_answer" data_correct_answer="{{ question.correct_answer }}">
+                {% if question.correct_answer == 'choice_a'%}
+                {{ question.choice_a }}
+                {% elif question.correct_answer == 'choice_b' %}
+                {{ question.choice_b }}
+                {% elif question.correct_answer == 'choice_c' %}
+                {{ question.choice_c }}
+                {% elif question.correct_answer == 'choice_d' %}
+                {{ question.choice_d }}
+                {% else %}
+                {% endif %}
+            </li>
+            <li class="strong">解説</li>
+            <li>{{ question.commentary }}</li>
+        </ul>
+    </details>
+    <div class="back">
+        <a href="{% url 'jrfoodadv:practice_result' %}"><i class="fa fa-chevron-left"></i> 前のページに戻る</a>
+    </div>
+</div>
+
+
+<!-- メモ/モーダルダイアログ -->
+<div class="popup" id="js-popup">
+    <div class="popup-inner">
+        <div class="close-btn" id="js-close-btn">
+            <div class="close-icon"></div>
+        </div>
+        <div class="modal-container">
+            <p class="bold">メモ</p>
+            <textarea name="memo" cols="50" rows="9" maxlength="512">{{ question.memo }}</textarea>
+            <button id="popup-btn">保存して閉じる</button>
+        </div>
+    </div>
+    <div class="black-background" id="js-black-bg"></div>
+</div>
+<!-- メモ/モーダルダイアログの設置 -->
+
+
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/jrfoodadv/practice.js' %}"></script>
+<script src="{% static 'js/jrfoodadv/result_individual.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,288 @@
+{% extends 'corporate/base/base.html' %}
+{% block page_title %}食品業界資格支援のフードイグザム{% endblock %}
+
+{% load static %}
+{% block head %}
+{% include 'corporate/_include/_google_adsense.html' %}
+<!-- OGP -->
+<meta property="og:title" content="食品業界資格支援のフードイグザム"/>
+<meta property="og:url" content="https://www.food-exam.com"/>
+<meta property="og:image" content="https://www.food-exam.com/static/images/fruits.jpg" />
+<meta property="og:description" content="食品業界資格支援のフードイグザムは、食品表示検定初級をはじめとした食品業界の資格合格を目指す人を応援するeラーニングのwebアプリです。ユーザー登録をするとwebアプリで問題集が利用できるようになります。食品業界で習得が求められる、食品表示検定の初級や各種資格をeラーニングのwebアプリで簡単に学べることができます。"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="フードイグザム"/>
+<meta name="twitter:card" content="summary"/>
+<!-- SEO -->
+<meta name="description" content="食品業界資格支援のフードイグザムは、食品表示検定初級をはじめとした食品業界の資格合格を目指す人を応援するeラーニングのwebアプリです。ユーザー登録をするとwebアプリで問題集が利用できるようになります。食品業界で習得が求められる、食品表示検定の初級や各種資格をeラーニングのwebアプリで簡単に学べることができます。">
+{# --- css --- #}
+<!-- <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" /> -->
+<link rel="stylesheet" href="{% static 'base/css/swiper-bundle.min.css' %}" />
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<!-- Slider main container -->
+<div class="swiper gray_background">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        {# include 'corporate/_include/_main_kv/_main_kv_001.html' #}
+        {# include 'corporate/_include/_main_kv/_main_kv_002.html' #}
+        {% include 'corporate/_include/_main_kv/_main_kv_003.html' %}
+        <!-- Slide 1 -->
+
+        <!-- Slide 2 -->
+        {% comment %}
+        <!-- また使うかもしれないので一旦残しておく↓ -->
+        {% if latest_category_present_info.release == release_model.PUBLIC %}
+        <div class="swiper-slide">
+            <!-- <a href="/"> -->
+                <img src="{% static 'images/gift.jpg' %}" alt="" class="img_main_kv_2">
+                <div class="main_kv_desc_2">
+                    <p class="title">Amazonギフト券GETキャンペーン</p>
+                    <p>問題不備を見つけて<a href="{% url 'corporate:inquiry' %}"><span class="link_color">問い合わせフォーム<i class="fa fa-question-circle-o link_color"></i></span></a> に連絡をし、確認ができればAmazonギフト券500円分をプレゼントします。</p>
+                    <p>詳細は<a href="/info/{{ latest_category_present_info.id }}"><span class="link_color">こちら<i class="fa fa-question-circle-o link_color"></i> </span></a></p>
+                </div>
+            <!-- </a> -->
+        </div>
+        {% endif %}
+        {% endcomment %}
+        <!-- Slide 2 -->
+
+        <!-- Slide 3 -->
+        {% if latest_category_campaign_info.release == release_model.PUBLIC %}
+        <!-- 使う可能性がほぼないが、違う事案で使い道があるかもしれないので一応残しておく↓ -->
+        <div class="swiper-slide">
+            <!-- <a href="/"> -->
+                <img src="{% static 'images/start.jpg' %}" alt="" class="img_main_kv_3">
+                <div class="main_kv_desc_3">
+                    <p class="title">全額キャッシュバックキャンペーン!!</p>
+                    <p>フードイグザム公開記念として、新規アカウント登録した先着10人に1100円全額をキャッシュバックします!!</p>
+                    <p>詳細は<a href="/info/{{ latest_category_campaign_info.id }}"><span class="link_color">こちら<i class="fa fa-question-circle-o link_color"></i> </span></a></p>
+                </div>
+            <!-- </a> -->
+        </div>
+        <!-- Slide 3 -->
+        {% endif %}
+
+        {% comment %}
+        <!-- <div class="swiper-slide">Slide ４</div> -->
+        {% endcomment %}
+    </div>
+
+    {% if use_swiper %}
+    {% comment %}
+    <!-- 何か一つでもPUBLICがあればページネーションとナビボタンを設置する -->
+    {% endcomment %}
+    <!-- 必要に応じてページネーション -->
+    <div class="swiper-pagination"></div>
+    <!-- 必要に応じてナビボタン -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    {% endif %}
+</div>
+
+<!-- メインコンテント -->
+<div class="main_content">
+
+    <!-- コンテナ1 -->
+    <section class="info_section">
+        <h2>お知らせ</h2>
+        {% if informations %}
+        <table class="table-box info_section_table">
+            {% for information in informations %}
+            <tr>
+                <th><span>{{ information.created_at|date:"Y年n月j日" }} | <span class="info_section_category category_{{ information.category }}"> {{ information.category_as_str }}</span></span></th>
+                <td>
+                    <a href="{% url 'corporate:info_individual' information.id %}">
+                        <span class="link_color">
+                        {{ information.title }}
+                        </span>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% if informations_count > 3 %}
+        {% comment %}
+        <!-- トップページに載せるお知らせは3ページまで -->
+        {% endcomment %}
+        <p>※過去の更新情報は<a href="{% url 'corporate:info_list' %}"><span class="link_color">こちら<i class="fa fa-question-circle-o link_color"></i> </span></a></p>
+        {% endif %}
+        {% else %}
+        <p>お知らせはありません。</p>
+        {% endif %}
+    </section>
+    <!-- コンテナ1 -->
+
+
+    <!-- コンテナ2 -->
+    <section class="info_section">
+        <h2>学習コラム</h2>
+        {% if columns %}
+        <table class="table-box info_section_table">
+            {% for column in columns %}
+            <tr>
+                <th><span>{{ column.created_at|date:"Y年n月j日" }} | <span class="info_section_category category_{{ column.category }}"> {{ column.category_as_str }}</span></span></th>
+                <td>
+                    <a href="{% url 'corporate:column_individual' column.id %}">
+                        <span class="link_color">
+                        {{ column.title }}
+                        </span>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% if columns_count > 3 %}
+        {% comment %}
+        <!-- トップページに載せる学習コラムは3ページまで -->
+        {% endcomment %}
+        <p>※過去の更新情報は<a href="{% url 'corporate:column' %}"><span class="link_color">こちら<i class="fa fa-question-circle-o link_color"></i> </span></a></p>
+        {% endif %}
+        {% else %}
+        <p>お知らせはありません。</p>
+        {% endif %}
+    </section>
+    <!-- コンテナ2 -->
+
+
+    <!-- コンテナ3 -->
+    <section class="info_section">
+        <h2>合格体験記</h2>
+        {% if testimonials %}
+        <table class="table-box info_section_table">
+            {% for testimonials in testimonials %}
+            <tr>
+                <th><span>
+                        {{ testimonials.published_at|date:"Y年n月j日" }} | {% if testimonials.exam_subject == exam.JRFOODADV %}
+                                                                                <span class="info_section_category category_pass_jrfoodadv"> 初級合格</span>
+                                                                            {% elif testimonials.exam_subject == exam.FOODADV %}
+                                                                                <span class="info_section_category category_pass_foodadv"> 中級合格</span>
+                                                                            {% endif %}
+                    </span>
+                </th>
+                <td>
+                    <a href="{% url 'corporate:testimonials_individual' testimonials.id %}">
+                        <span class="link_color">
+                        {{ testimonials.title }}
+                        </span>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% if testimonials_count > 3 %}
+        {% comment %}
+        <!-- トップページに載せる合格体験記は3ページまで -->
+        {% endcomment %}
+        <p>※過去の更新情報は<a href="{% url 'corporate:testimonials_list' %}"><span class="link_color">こちら<i class="fa fa-question-circle-o link_color"></i> </span></a></p>
+        {% endif %}
+        {% else %}
+        <p>合格体験記はありません。</p>
+        {% endif %}
+    </section>
+    <!-- コンテナ3 -->
+
+
+    <!-- 紹介 -->
+    <section class="introduction gray_background">
+        <h2>フードイグザムとは</h2>
+        <p>食品表示検定初級をはじめとした食品業界の資格合格を目指す人を応援するeラーニングのwebアプリです。</p>
+        <p>食品業界で習得が求められる、食品表示検定の初級や各種資格をeラーニングのwebアプリで簡単に学べることができます。</p>
+
+        {% include 'corporate/_include/_food_exam_feature.html' %}
+
+        <div class="frame_wrapper">
+            <h3>動画による使い方の紹介</h3>
+            <div class="frame_wrapper__video">
+                <iframe class="youtube"
+                data-src="https://www.youtube.com/embed/lSn-wYAo9is"
+                frameborder="0"
+                allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+    <!-- 紹介 -->
+
+
+    <!-- コースセクション -->
+    <section class="course_section">
+        <h2>コース一覧</h2>
+        <div class="course_section_inner">
+            <div class="course_cat">
+                <ul class="course_wrap">
+                    <li class="course_list">
+                        <a href="{{ jrfoodadv_redirect_url }}">
+                            <h3 class="course_title">食品表示検定・初級</h3>
+                            <div class="course_img">
+                                <img src="{% static 'images/brussels_sprouts.jpg' %}" alt="食品表示検定・初級">
+                            </div>
+                            <div class="course_desc">全{{ count_jrfoodadv }}問を用意しました。</br>最新の表示法に対応しています。</div>
+                        </a>
+                    </li>
+                    <li class="course_list">
+                        <p class="not_open">現在改修中です。</br>リリースまで暫くお待ち下さい。</p>
+                            <h3 class="course_title">食品表示検定・中級</h3>
+                            <div class="course_img">
+                                <img src="{% static 'images/apple.jpg' %}" alt="食品表示検定・中級">
+                            </div>
+                            {% comment  "commentタグ内をコメントアウト" %}
+                            <!-- <div class="course_desc">全xxx問を用意しました。最新の表示法に対応しています。</div> -->
+                            {% endcomment %}
+                        </li>
+                    <li class="course_list">
+                        <p class="not_open">現在改修中です。</br>リリースまで暫くお待ち下さい。</p>
+                            <h3 class="course_title">惣菜管理士</h3>
+                            <div class="course_img">
+                                <img src="{% static 'images/side_dish.jpg' %}" alt="惣菜管理士">
+                            </div>
+                            {% comment  "commentタグ内をコメントアウト" %}
+                            <!-- <div class="course_desc">全xxx問を用意しました。最新の表示法に対応しています。</div> -->
+                            {% endcommnet %}
+                        </li>
+                    {% comment  "commentタグ内をコメントアウト" %}
+                    <!-- <li class="course_list">
+                        <h3 class="course_title">食品表示検定・初級</h3>
+                        <div class="course_img">
+                            <img src="{% static 'images/brussels_sprouts.jpg' %}" alt="">
+                        </div>
+                        <div class="course_desc">全400問を用意しました。最新の表示法に対応しています。</div>
+                    </li>
+                    <li class="course_list">
+                        <h3 class="course_title">食品表示検定・中級</h3>
+                        <div class="course_img">
+                            <img src="{% static 'images/apple.jpg' %}" alt="">
+                        </div>
+                        <div class="course_desc">全400問を用意しました。最新の表示法に対応しています。</div>
+                    </li>
+                    <li class="course_list">
+                        <h3 class="course_title">惣菜管理士</h3>
+                        <div class="course_img">
+                            <img src="{% static 'images/side_dish.jpg' %}" alt="">
+                        </div>
+                        <div class="course_desc">全400問を用意しました。最新の表示法に対応しています。</div>
+                    </li> -->
+                    {% endcomment %}
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- コースセクション -->
+</div>
+<!-- メインコンテント -->
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/corporate/utils.js' %}"></script>
+{% if use_swiper %}
+{% comment %}
+<!-- 何か一つでもPUBLICがあればswiperを動作させる -->
+{% endcomment %}
+<script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'js/corporate/index.js' %}"></script>
+{% endif %}
+{% endblock %}

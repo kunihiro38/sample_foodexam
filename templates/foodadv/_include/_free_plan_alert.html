@@ -1,0 +1,5 @@
+{% if not plan %}
+<a href="{% url 'corporate:jrfoodadv_plan' %}">
+    <p class="freeplan"><i class="fa fa-exclamation-triangle" style="color:#d8fa3b;"></i> あなたは無料プランです。有料プランで利用ができます。</p>
+</a>
+{% endif %}

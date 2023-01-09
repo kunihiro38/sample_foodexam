@@ -1,0 +1,97 @@
+{% extends 'foodadv/base/foodadv_base.html' %}
+{% block page_title %}検索{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<form action="" method="get">
+<div class="table-box search-table-box">
+    <h1>検索</h1>
+    <table>
+        <tr>
+            <th>問題ID</th>
+            <td>{{ form.question_id }}{{ form.question_id.errors }}</td>
+        </tr>
+        <tr>
+            <th>出題分野</th>
+            <td>{{ form.chapter }}{{ form.chapter.errors }}</td>
+        </tr>
+        <tr>
+            <th>単語</th>
+            <td>{{ form.word }}{{ form.word.errors }}
+                <p class="small">※問題文・選択肢・解説が含まれます。</p>
+            </td>
+        </tr>
+        <tr>
+            <th>出題対象</th>
+            <td>{{ form.target }}{{ form.target.errors }}</td>
+        </tr>
+        <tr>
+            <th>メモ</th>
+            <td>{{ form.memo }}{{ form.memo.errors }}</td>
+        </tr>
+        <tr>
+            <th>お気に入り</th>
+            <td>{{ form.favorite }}{{ form.favorite.errors }}</td>
+        </tr>
+    </table>
+
+    <!-- 無料プラン警告 -->
+    {% include 'foodadv/_include/_free_plan_alert.html'%}
+    <!-- 無料プラン警告 -->
+
+    <button type="submit" data-plan="{{ plan }}" {% if not plan %}disabled{% endif %}>検索する</button>
+
+    <div class="back">
+        <a href="{% url 'foodadv:index' %}"><i class="fa fa-chevron-left"></i> トップページに戻る</a>
+    </div>
+
+</div>
+</form>
+
+{% if question_page %}
+<div class="record_content">
+    <div class="result_content">
+
+        {% include 'foodadv/_include/_search_paging.html' %}
+
+        <p>{{ all_questions }}件の検索結果がありました。</p>
+        <p>※問題IDをクリックして、詳細を確認することができます。</p>
+        <table class=table-box>
+            <thead>
+                <tr>
+                    <th>番号</th>
+                    <th>問題ID</th>
+                    <th>設問内容</th>
+                    <th>分野</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for question in question_page %}
+                <tr>
+                    <td>{{ forloop.counter0|add:question_page.start_index }}</td>
+                    <td class="link_color">
+                        <a href="{% url 'foodadv:search_question_id' question.question_id %}">{{ question.question_id }}</a>
+                    </td>
+                    <td>{{ question.question_content }}</td>
+                    <td>{{ question.textbook_chapter }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% include 'foodadv/_include/_search_paging.html' %}
+
+    </div>
+</div>
+
+{% else %}
+<!-- <div class="record_content">
+    <div class="result_msg">
+        <p>登録されている履歴はありません。</p>
+    </div> -->
+{% endif %}
+
+{% endblock %}
+
